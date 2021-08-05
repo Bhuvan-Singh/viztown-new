@@ -1,6 +1,7 @@
 {
   "name": "viztown",
   "version": "1.0.0",
+  "homepage": ".",
   "private": true,
   "description": "Viztown",
   "author": "Bhuvan Singh",
@@ -15,9 +16,14 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.2.0",
+    "autoprefixer": "^10.3.1",
     "gatsby": "^3.10.2",
     "gatsby-plugin-gatsby-cloud": "^2.10.1",
+    "gatsby-plugin-postcss": "^4.10.0",
+    "postcss": "^8.3.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.2.7"
   }
 }
