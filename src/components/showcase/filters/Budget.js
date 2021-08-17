@@ -1,35 +1,119 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { Range, getTrackBackground } from 'react-range';
+import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
+
+const STEP = 5000;
+const MIN = 0;
+const MAX = 5000000;
 
 export default function Budget() {
-    const budgetRange = [
-        {
-            type: 'minimum',
-            value: 100000,
-            text: '1 Lac'
-        },
-        {
-            type: 'maximum',
-            value: 5000000,
-            text: '5 Lac'
-        }
-    ]
+    const filterState =  useContext(FilterStateContext);
+    const dispatch = useContext(FilterDispatchContext)
+    const handleChange = (values) => {
+        dispatch({type: 'BUDGET', payload: values}) 
+    }
+    const toggleBudgetDropdown = () => {
+        const b = document.getElementById('vt-search-relative-budget').classList.toggle('hidden');
+    }
+    const values = filterState.budget;
     return (
-        <div className="w-48 vt-search-budget flex items-center justify-between px-4 py-4 cursor-pointer relative">
-            <span className="vt-search-title text-sm text-primary">Budget</span>
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-            </span>
+        <div className="w-48 relative">
+            <div className="vt-search-budget flex items-center justify-between px-4 py-4 cursor-pointer relative" onClick={toggleBudgetDropdown}>
+                <span className="vt-search-title text-xs text-secondary absolute top-0 font-semibold" style={{fontSize:'10px'}}>₹ Budget</span>
+                <output className="flex justify-between items-center space-x-2 text-xs text-primary no-wrap" style={{ marginTop: '0px', fontWeight:'400'}} id="output">
+                    <div className="font-semibold">{filterState.budget[0]/100000} L</div> 
+                    <div className="font-semibold">To</div>  
+                    <div className="font-semibold">{filterState.budget[1]/100000} L</div>
+                </output>
+                
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                </span>
+            </div>
 
-            <div className="vt-search-relative vt-search-relative-budget absolute w-80 bg-grey top-full left-0 shadow-md rounded-b-md hidden">
+            <div id="vt-search-relative-budget" className="vt-search-relative absolute w-80 bg-grey top-full left-0 shadow-md rounded-b-md hidden">
+                <div onClick={toggleBudgetDropdown} className="absolute right-1 top-1 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 font-bold" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd">
+                        </path>
+                    </svg>
+                </div>
                 <div className="vt-search-dropdown text-sm text-primary p-3">
-                    <div className="px-4 py-3 font-semibold flex items-center justify-between">
-                        <input className="w-full vt-search-slider" type="range" min={budgetRange[0].value} max={budgetRange[1].value}  />
-                    </div>
-                    <div className="flex items-center justify-between text-xs">
-                        <span>₹{budgetRange[0].text}</span>
-                        <span>₹{budgetRange[1].text}</span>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap'
+                    }}
+                    >
+                    <Range
+                        values={filterState.budget}
+                        step={STEP}
+                        min={MIN}
+                        max={MAX}
+                        onChange={(values) => {
+                            handleChange(values);
+                        }}
+                        renderTrack={({ props, children }) => (
+                        <div
+                            onMouseDown={props.onMouseDown}
+                            onTouchStart={props.onTouchStart}
+                            style={{
+                            ...props.style,
+                            height: '36px',
+                            display: 'flex',
+                            width: '100%'
+                            }}
+                        >
+                            <div
+                            ref={props.ref}
+                            style={{
+                                height: '5px',
+                                width: '100%',
+                                borderRadius: '4px',
+                                background: getTrackBackground({
+                                values,
+                                colors: ['#ccc', '#ffca18', '#ccc'],
+                                min: MIN,
+                                max: MAX,
+                                }),
+                                alignSelf: 'center'
+                            }}
+                            >
+                            {children}
+                            </div>
+                        </div>
+                        )}
+                        renderThumb={({ props, isDragged }) => (
+                        <div
+                            {...props}
+                            style={{
+                            ...props.style,
+                            height: '15px',
+                            width: '15px',
+                            borderRadius: '50%',
+                            backgroundColor: '#ffca18',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            outline: 'none',
+                            }}
+                        >
+                            <div
+                            style={{
+                                height: '2px',
+                                width: '2px',
+                                backgroundColor: isDragged ? '#ffca18' : '#ffca18'
+                            }}
+                            />
+                        </div>
+                        )}
+                    />
+                    <output className="flex justify-between items-center w-full" style={{ marginTop: '10px', fontSize: '12px', fontWeight:'600'}} id="output">
+                        <div>Min : {filterState.budget[0]/100000} Lakh</div>  <div> Max : {filterState.budget[1]/100000} Lakh</div>
+                    </output>
                     </div>
                 </div>
             </div>

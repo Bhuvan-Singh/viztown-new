@@ -1,0 +1,7 @@
+.slide-item {
+    display: flex !important;
+}
+.nav-slider.slick-initialized .slick-slide {
+    display: block;
+    margin: auto 5px;
+}

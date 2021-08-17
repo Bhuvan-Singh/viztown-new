@@ -1,15 +1,17 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import {navigate} from 'gatsby'
 
-export default function Map({propertyListings, propId = null}) {
+import { ListingContext } from '../../../contexts/ListingContextProvider';
+
+export default function Map({propId = null}) {
+    const {listings} = useContext(ListingContext)
     const zoom = propId === null ? 12 : 20;
-    const propertyID = propId === null ? 0 : parseInt(propId)
+    const listingID = propId === null ? 0 : parseInt(propId)
     const mapContainerStyle = {
         width: '100%',
         height: '100%'
     };
-
     const onMarkerClick = (slug) => {
         navigate(`/showcase/${slug}`)
     };
@@ -22,18 +24,21 @@ export default function Map({propertyListings, propId = null}) {
                 id="vt-map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={zoom}
-                center={propertyListings[propertyID].coordinates}
+                center={listings[listingID].coordinates}
             >
-                {propertyListings.map((property,index) => (
+                {listings.map((listing,index) => {
+                    const icon = propId === index ? "https://img.icons8.com/ultraviolet/40/000000/marker.png" : "https://img.icons8.com/offices/40/000000/marker.png";
+                    return (
                     <Marker
                     key={index}
-                    icon={"https://img.icons8.com/fluency/48/000000/marker.png"}
-                    position={property.coordinates}
-                    label={property.title}
-                    url={`/showcase/${property.slug}/`}
-                    onClick={(() => onMarkerClick(property.slug))}
+                    icon={icon}
+                    position={listing.coordinates}
+                    label={listing.title}
+                    url={`/showcase/${listing.slug}/`}
+                    onClick={(() => onMarkerClick(listing.slug))}
                     />
-                ))}
+                    )}
+                )}
             </GoogleMap>
         </LoadScript>
     )

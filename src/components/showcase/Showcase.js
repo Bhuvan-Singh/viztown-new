@@ -119,10 +119,12 @@ export default function Showcase() {
     ]
     return (
         <div className="vt-showcase mx-auto relative z-10">
-            <div className="grid grid-cols-2">
-                <Listings propertyListings={propertyListings} lgGrid="2" twoXlGrid="3"/>
-                <div className="relative">
-                    <Map propertyListings={propertyListings}/>
+            <div className="grid grid-cols-9">
+                <div className="col-span-5">
+                    <Listings lgGrid="2" twoXlGrid="3"/>
+                </div>
+                <div className="col-span-4 relative">
+                    <Map/>
                 </div>
             </div>
         </div>

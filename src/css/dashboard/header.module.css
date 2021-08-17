@@ -1,0 +1,12 @@
+.active{
+    font-weight: 600;
+}
+.active:after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #222222;
+    bottom: -2px;
+    position: absolute;
+    left: 0; 
+}

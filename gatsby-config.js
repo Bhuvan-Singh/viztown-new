@@ -3,6 +3,16 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "Viztown",
   },
-  plugins: ["gatsby-plugin-gatsby-cloud"],
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-gatsby-cloud",
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-responsive-iframe`],
+      },
+    },
+  ],
+  pathPrefix: `/viztown-2.0`,
+
 };

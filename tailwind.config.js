@@ -11,7 +11,8 @@ module.exports = {
         secondary: '#FFCA18',
         grey: '#F5F5F5',
         lightGrey: '#999999',
-        processbg: '#263238'
+        processbg: '#263238',
+        dashboardGrey: "#F4F5F7"
       },
       height:{
         '600': '600px',

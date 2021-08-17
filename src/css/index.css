@@ -2,22 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
-/* .vt-header {
-    height:60px;
-}
-.vt-filter{
-    height:180px
-}
-.vt-listings-wrap {
-    height: calc(100vh - 170px);
-    overflow-x: scroll;
-}
-.vt-showcase {
-    margin-top: -70px;
-} */
 body{
     font-family: 'Poppins';
+}
+.vt-serif-font{
+    font-family: 'Playfair Display', serif;
 }
 .vt-header {
     height:60px;
@@ -31,4 +22,38 @@ body{
 }
 .vt-showcase {
     /* margin-top: -70px; */
+}
+.vt-type-checkbox:checked~.vt-type-checkbox-label {
+    background-color: #FFCA18;
+    border-color: #FFCA18;
+    color: #222;
+    font-weight: 600;
+}
+.for-slider .slick-prev {
+    left: 5px;
+    z-index: 50;
+}
+.for-slider .slick-next {
+    right: 20px;
+    z-index: 50;
+}
+.for-slider .slick-prev:before,.for-slider .slick-next:before {
+    font-size: 35px;
+    color: #222222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.for-slider .slick-list, .for-slider .slick-track, .for-slider .slick-slide, .for-slider .slick-slide > div{
+    height: 100%;
+}
+.for-slider .slick-slide .item{
+    display: flex !important;
+    align-items: center;
+}
+.slick-slide.slick-active.slick-current span {
+    background: #222;
+    color: #fff;
+}
+.nav-slider .slick-slide.slick-active.slick-current img {
+    opacity: 0.7;
 }
