@@ -1,16 +1,29 @@
-import React,{useContext} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import axiosConfig from '../../../axiosConfig';
 import Select from 'react-select'
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
 export default function Category() {
+    
     const options = [
-        { value: 'lease', label: 'Lease' },
-        { value: 'buy', label: 'Buy' },
+        { value: 1, label: 'Select' },
     ]
+    const [categoryList, setCategoryList] = useState(options)
+    const [defaultCategoryIndex, setDefaultCategoryIndex] = useState(1)
+
+    useEffect(()=>{
+        axiosConfig.get('/propertyCategoryList')
+        .then(function (response) {
+            setCategoryList(response.data.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    },[])
 
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
-
+    console.log(categoryList)
     const customStyles = {
         control: (provided, state) => ({
             ...provided,
@@ -85,32 +98,24 @@ export default function Category() {
     const handleChange = (selectedCategory, actionMeta ) => {
         dispatch({ type: 'CATEGORY', payload: selectedCategory.value });
     }
+
+    useEffect(()=>{
+        setDefaultCategoryIndex("1")
+    },[categoryList])
     const defaultValueIndex = options.findIndex(x => x.value === filterState.category);
     
     return (
         <div className="w-36 vt-search-category flex items-center justify-between px-4 border-r border-grey cursor-pointer relative" >
-            {/* <span className="vt-search-title text-sm text-primary">Lease</span>
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-            </span>
-
-            <div className="vt-search-relative vt-search-relative-category absolute w-full bg-grey top-full left-0 shadow-md rounded-b-md hidden">
-                <div className="vt-search-dropdown text-sm text-primary">
-                    <div className="px-4 py-3 border-b border-gray-200 font-semibold flex items-center justify-between">Lease
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                    </div>
-                    <div className="px-4 py-3 opacity-40 font-semibold">Buy</div>
-                </div>
-            </div> */}
+            { typeof window !== 'undefined' && (
             <Select
             className="w-full" 
-            defaultValue = {options[defaultValueIndex]}
+            value = {
+                categoryList.filter(option => 
+                   option.value === filterState.category)
+            }
             styles={customStyles}
-            options={options}
+            options={categoryList}
+            placeholder="Category"
             onChange={handleChange}
             theme={theme => ({
                 ...theme,
@@ -122,6 +127,7 @@ export default function Category() {
                 },
             })}
             />
+            )}
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />

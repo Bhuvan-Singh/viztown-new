@@ -1,4 +1,5 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
+import axiosConfig from '../../../axiosConfig';
 import Select from 'react-select'
 
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
@@ -14,8 +15,19 @@ export default function Location({updateLocations,location}) {
         { value: 'greaterkailash', label: 'Greater Kailash' },
         { value: 'janakpuri', label: 'Janakpuri' },
     ]
+    const [locationList, setLocationList] = useState(options)
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
+    useEffect(()=>{
+        axiosConfig.get('/propertyLocationList')
+        .then(function (response) {
+            setLocationList(response.data.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    },[])
+
     const handleChange = (selectedLocations, actionMeta ) => {
         dispatch({ type: 'LOCATION', payload: selectedLocations });
     }
@@ -89,11 +101,12 @@ export default function Location({updateLocations,location}) {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-secondary" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
+            { typeof window !== 'undefined' && (
             <Select 
             className="w-full border-none" 
             defaultValue={filterState.location}
             styles={customStyles}
-            options={options} 
+            options={locationList} 
             placeholder="Location"
             isMulti
             theme={theme => ({
@@ -107,6 +120,7 @@ export default function Location({updateLocations,location}) {
             })}
             onChange={handleChange}
             />
+            )}
         </div>
     )
 }

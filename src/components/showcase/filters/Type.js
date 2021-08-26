@@ -1,37 +1,24 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
+import axiosConfig from '../../../axiosConfig';
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
 export default function Type() {
-    const propertyTypes = [
+    const options = [
         {
             id: 1,
-            type: "Office Space",
-        },
-        {
-            id: 2,
-            type: "Shop/Showrooom",
-        },
-        {
-            id: 3,
-            type: "Residential",
-        },
-        {
-            id: 4,
-            type: "Commercial Land",
-        },
-        {
-            id: 5,
-            type: "Co-Working space",
-        },
-        {
-            id: 6,
-            type: "Warehouse/Godwon",
-        },
-        {
-            id: 7,
-            type: "Industrial Building",
+            type: "Loading Data",
         },
     ]
+    const [propertyTypes, setPropertyTypes] = useState(options)
+    useEffect(()=>{
+        axiosConfig.get('/propertyTypeList')
+        .then(function (response) {
+            setPropertyTypes(response.data.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    },[])
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const toggleTypeDropdown = () => {
@@ -44,6 +31,7 @@ export default function Type() {
         });
         dispatch({type: 'TYPE', payload: selectedTypes}) 
     }
+    
     return (
         <div className="w-48 relative">
             <div className="vt-search-type flex items-center justify-between px-4 py-4 border-r border-grey cursor-pointer" onClick={toggleTypeDropdown}>

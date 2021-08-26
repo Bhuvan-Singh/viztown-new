@@ -21,7 +21,7 @@ export default function Header() {
                     <Link to="/partners">Partners</Link>
                     <Link to="/showcase">Showcase</Link>
                     <Link to="/contact-us">Contact Us</Link> */}
-                    <Link to="/dashboard" className="bg-secondary px-5 rounded-sm py-2 font-bold leading-none hover:text-white">Sign In</Link>
+                    <Link to="/login" className="bg-secondary px-5 rounded-sm py-2 font-bold leading-none hover:text-white">Sign In</Link>
                 </nav>
             </div>
         </header>

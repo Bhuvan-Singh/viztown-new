@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import axiosConfig from '../../../axiosConfig';
 import {ListingContext} from '../../../contexts/ListingContextProvider'
 import {FilterStateContext} from '../../../contexts/FilterContextProvider'
 import {navigate} from 'gatsby'
@@ -94,7 +95,32 @@ export default function FilterButton() {
     const filterState =  useContext(FilterStateContext);
     const {setListings} = useContext(ListingContext)
     const updateListings = () => {
-        setListings(searchedListings)
+        let location = [];
+        filterState.location.map((loc)=>{
+            location.push(loc.value)
+        })
+        axiosConfig.get('/filteredListings',{
+            params: {
+                category: filterState.category,
+                budget: filterState.budget,
+                type: filterState.type,
+                location: location
+            }
+        })
+        .then(function (response) {
+            setListings(response.data.data);
+            console.log("length is" + response.data.data.length)
+            console.log(filterState)
+            // if(response.data.data.length > 0) {
+            //     navigate("/showcase/" + response.data.data[0].slug)
+            // }else{
+            //     navigate("/showcase")
+            // }
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
         localStorage.setItem("filter", JSON.stringify(filterState));
     }
     return (

@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Link} from 'gatsby'
-
+import { CommonContext } from '../../../contexts/CommonContextProvider';
 import * as styles from '../../../css/index/index-navigation.module.css'
 
 export default function Navigation({slug, listId}) {
+    const {isResidential} = useContext(CommonContext)
+    const hideSpaceCalculatorClass = isResidential ? 'hidden' : ' ';
+    console.log("isResidential" + isResidential)
     return (
         <div className={`relative w-full bg-processbg absolute top-0 py-2 z-10 md:flex items-center mx-auto capitalize justify-center gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto ${styles.vtIndexHeader}`}>
             <Link 
@@ -31,7 +34,7 @@ export default function Navigation({slug, listId}) {
 
             <Link 
             to={`${slug}/space-calculator`} 
-            className="tab--link rounded-3xl text-white px-4 text-xs font-semibold py-2 active"
+            className={`tab--link rounded-3xl text-white px-4 text-xs font-semibold py-2 active ${hideSpaceCalculatorClass}`}
             activeClassName="bg-secondary text-primary">Space Calculator
             </Link>
         </div>

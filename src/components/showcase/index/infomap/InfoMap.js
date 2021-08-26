@@ -123,8 +123,8 @@ export default function InfoMap() {
                 <div className="2xl:max-w-screen-xl mx-auto py-0 px-4 xl:px-0 border-t border-gray-200 border-opacity-80 pt-8">
                     <h2 className="capitalize text-2xl text-primary mb-3 font-bold vt-serif-font">Features</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-5 py-4">
-                        {infoMapData.fetaures.map((feature) => (
-                            <div className="flex items-center gap-2 text-primary">
+                        {infoMapData.fetaures.map((feature,index) => (
+                            <div key={index} className="flex items-center gap-2 text-primary">
                                 <div className="bg-primary p-2 ">
                                     <img className="w-6 h-6" src={feature.icon} alt=""/>
                                 </div>

@@ -9,7 +9,7 @@ export default function ActualSiteView({fullView}) {
     const actualSite = [
         {
             tab: "Site Photo",
-            iFrame: false,
+            iframe: false,
             images : [
                 {
                     url: "http://viztown.in/upload/gallery/902850941reception.jpg",
@@ -85,6 +85,7 @@ export default function ActualSiteView({fullView}) {
     ]
     return (
         <IndexLayout>
+            { typeof window !== 'undefined' && (
             <Tabs>
                 <TabList className="tabs relative w-full bg-white top-0 py-1 z-10 flex items-center mx-auto capitalize justify-center gap-4 text-xs font-semibold" style={{height:'40px'}}>
                     {
@@ -101,6 +102,8 @@ export default function ActualSiteView({fullView}) {
                     ))}
                 </div>
             </Tabs>
+            )
+            }
         </IndexLayout>
     )
 }

@@ -20,15 +20,17 @@ export default function InfoSlider() {
             <div className="absolute w-full h-full bg-black opacity-50 top-0 left-0 z-10"></div>
             <div className="absolute h-full w-full top-0 left-0">
                 <div className="property--slider h-full overflow-hidden slick-initialized slick-slider">
+                { typeof window !== 'undefined' && (
                     <Slider {...settings}>
                         <div>
-                            <img class="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1383277452001_001.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
+                            <img className="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1383277452001_001.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
                         </div>
                         <div>
-                            <img class="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1512039038003.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
+                            <img className="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1512039038003.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
                         </div>
                         
                     </Slider>
+                )}
                 </div>
             </div>
             <div className="lg:text-center mx-auto relative z-10 h-full max-w-lg 2xl:max-w-2xl flex items-center justify-center">

@@ -1,12 +1,13 @@
-import React, {useContext} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import axiosConfig from '../../../axiosConfig';
 import { Range, getTrackBackground } from 'react-range';
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
-const STEP = 5000;
-const MIN = 0;
-const MAX = 5000000;
-
 export default function Budget() {
+
+    const STEP = 5000;
+    const MIN = 0;
+    const MAX = 7000000;
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const handleChange = (values) => {
@@ -41,6 +42,7 @@ export default function Budget() {
                     </svg>
                 </div>
                 <div className="vt-search-dropdown text-sm text-primary p-3">
+                { typeof window !== 'undefined' && (
                 <div
                     style={{
                         display: 'flex',
@@ -48,6 +50,7 @@ export default function Budget() {
                         flexWrap: 'wrap'
                     }}
                     >
+                    
                     <Range
                         values={filterState.budget}
                         step={STEP}
@@ -114,7 +117,9 @@ export default function Budget() {
                     <output className="flex justify-between items-center w-full" style={{ marginTop: '10px', fontSize: '12px', fontWeight:'600'}} id="output">
                         <div>Min : {filterState.budget[0]/100000} Lakh</div>  <div> Max : {filterState.budget[1]/100000} Lakh</div>
                     </output>
+                    
                     </div>
+                    )}
                 </div>
             </div>
         </div>

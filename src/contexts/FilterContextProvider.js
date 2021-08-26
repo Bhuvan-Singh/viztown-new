@@ -4,16 +4,16 @@ export const FilterStateContext = createContext();
 export const FilterDispatchContext = createContext();
 
 let initialFilters = {
-    category: 'lease',
+    category: 1,
     location: [],
     type: [],
-    budget: [750000,5000000]
+    budget: [5100000,6000000]
 }
-if(typeof window !== 'undefined' && window.localStorage){
-    if (window.localStorage.getItem('filter')) {
-        initialFilters = JSON.parse(localStorage.getItem("filter"));
-    }
-}
+// if(typeof window !== 'undefined' && window.localStorage){
+//     if (window.localStorage.getItem('filter')) {
+//         initialFilters = JSON.parse(localStorage.getItem("filter"));
+//     }
+// }
 
 const filterReducer = (state, action) => {
     switch (action.type) {
@@ -55,7 +55,6 @@ const filterReducer = (state, action) => {
 
 export default function FilterContextProvider({children}) {
     const [filter, filterDispatcher] = useReducer(filterReducer, initialFilters);
-    
     return(
         <FilterStateContext.Provider value={filter}>
             <FilterDispatchContext.Provider value={filterDispatcher}>

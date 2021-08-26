@@ -1,4 +1,4 @@
-import React,{createContext, useState} from 'react'
+import React,{createContext, useState, useEffect} from 'react'
 import axiosConfig from '../axiosConfig';
 export const ListingContext = createContext();
 
@@ -8,10 +8,10 @@ const initialListings = [
         slug: "101-indian-road",
         ownerImg: "http://cyberworx.co.in/viztown_new//upload/about/bb2438f4d39cc948408c50e32d3ff39e.jpg",
         ownerName: "Ankita Gokhale",
+        ownerAddress: "Early Bird Homes at eXp Realty, LLC",
         featuredImage: "http://cyberworx.co.in/viztown_new//upload/about/aa9a85202f59982afde7b85d018cbb26.jpg",
         title: "101 Indian Road",
         location: "Lake bluff, illinios 600044",
-        ownerAddress: "Early Bird Homes at eXp Realty, LLC",
         configuration: [
             {
                 name: "Bed",
@@ -119,6 +119,15 @@ const initialListings = [
 
 export default function ListingContextProvider({children}) {
     const [listings, setListings] = useState(initialListings)
+    useEffect(()=>{
+        axiosConfig.get('/allListings')
+        .then(function (response) {
+            setListings(response.data.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    },[])
     return (
         <ListingContext.Provider value={{listings, setListings}}>
             {children}

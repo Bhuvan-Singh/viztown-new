@@ -84,7 +84,10 @@ export default function SliderWithNavigation({images, iframe, fullView = false})
         ],
     };
     return (
+        
         <div className="flex-grow h-full flex flex-col justify-center items-center w-full relative">
+            { typeof window !== 'undefined' && (
+            <>
             <Slider className="for-slider w-full h-full top-0 absolute left-0 flex items-center" {...settings} ref={slider => (slider1 = slider)} >
                 {images.map((image,index) => (
                     <div className="item h-full flex items-center" key={index}>
@@ -105,6 +108,10 @@ export default function SliderWithNavigation({images, iframe, fullView = false})
                 </div>
                 ))}
             </Slider>
+            
+            </>)
+            }
         </div>
+        
     )
 }
