@@ -3,7 +3,6 @@ import {Link} from 'gatsby'
 
 import LayoutNoFooter from '../components/LayoutNoFooter'
 import layout from '../components/Layout'
-import Filters from '../components/showcase/Filters'
 import Listings from '../components/showcase/listings/Listings'
 import Map from '../components/showcase/map/Map'
 import Configuration from '../components/showcase/listings/listing/Configuration' 
@@ -20,7 +19,6 @@ export default function ThreedRendersFull({pageContext}) {
 
     return (
         <LayoutNoFooter>
-            <Filters/>
             <div className="vt-showcase mx-auto relative z-10" >
                 <Link to={`/showcase/${pageContext.slug}/space-calculator`} className="absolute left-0 bg-gray-200 pl-1 pr-2 py-1 top-1 rounded-r-xl z-50">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">

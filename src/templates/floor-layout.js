@@ -17,7 +17,7 @@ export default function FloorLayout({pageContext}) {
     const {listings} = useContext(ListingContext)
     return (
         <LayoutNoFooter>
-            <Filters/>
+            {/* <Filters/> */}
             <div className="vt-showcase mx-auto relative z-10" >
                 <div className="grid lg:grid-cols-8 2xl:grid-cols-12">
                     <div className="col-span-2 2xl:col-span-4 border-r border-gray-100">

@@ -12,24 +12,16 @@ export default function OwnerDetails({pageContext, viewSlug}) {
     // const [activeIndex, setActiveIndex] = useState(0)
     let activeIndex = 0;
     listings.map((listing,index) => {
-        console.log("listing.id" + listing.id)
         if(listing.id == pageContext.id){
             activeIndex = index
-            
-            console.log("activeIndex" + activeIndex)
-            console.log(listings)
-            console.log("pageContext.id" + pageContext.id)
-            
         }
         
     })
     if(listings.length > 0){
         if(listings[activeIndex].type == 4){
-            console.log("DSffsfsdfff")
             setIsResidential(true)
         }else{
             setIsResidential(false)
-            console.log("oiorioite")
         }
     }
     

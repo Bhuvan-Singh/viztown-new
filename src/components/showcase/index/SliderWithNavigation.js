@@ -26,7 +26,9 @@ const CustomPrevArrow = (props) => {
 }
 
 export default function SliderWithNavigation({images, iframe, fullView = false}) {
-    const asNavForSettingsSlidesToShow = fullView ? 6 : 5 
+    // const imagesCount = images.length;
+    const infinite = images.length < 5 ? false : true
+    const asNavForSettingsSlidesToShow = fullView ? 6 : 5
     const forSliderImageWidthClass = fullView ? "lg:w-1/2 2xl:w-7/12" : "lg:w-9/12 2xl:w-11/12" 
     const [nav1, setNav1] = useState(null)
     const [nav2, setNav2] = useState(null)
@@ -41,7 +43,7 @@ export default function SliderWithNavigation({images, iframe, fullView = false})
 
     var settings = {
         dots: false,
-        infinite: true,
+        infinite: infinite,
         slidesToShow: 1,
         slidesToScroll: 1,
         fade: true,
@@ -53,7 +55,7 @@ export default function SliderWithNavigation({images, iframe, fullView = false})
     var asNavForSettings = {
         slidesToShow: asNavForSettingsSlidesToShow,
         slidesToScroll: 1,
-        infinite: true,
+        infinite: infinite,
         arrows: false,
         dots: false,
         centerMode: false,

@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function InfoSlider() {
+export default function InfoSlider({propertyName, propertyLocation, bannerImages}) {
     var settings = {
         dots: false,
         infinite: true,
@@ -22,22 +22,22 @@ export default function InfoSlider() {
                 <div className="property--slider h-full overflow-hidden slick-initialized slick-slider">
                 { typeof window !== 'undefined' && (
                     <Slider {...settings}>
-                        <div>
-                            <img className="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1383277452001_001.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
-                        </div>
-                        <div>
-                            <img className="h-full w-full object-cover" src="http://cyberworx.co.in/viztown_new/upload/gallery/1512039038003.jpg" alt="" style={{height: 'calc(100vh - 170px)'}}/>
-                        </div>
-                        
+                        {
+                            bannerImages.map(image => 
+                                <div>
+                                    <img className="h-full w-full object-cover" src={image.url} alt="" style={{height: 'calc(100vh - 170px)'}}/>
+                                </div>
+                            )
+                        }
                     </Slider>
                 )}
                 </div>
             </div>
             <div className="lg:text-center mx-auto relative z-10 h-full max-w-lg 2xl:max-w-2xl flex items-center justify-center">
                 <div className="relative space-y-8 px-4 lg:px-0">
-                    <h1 className="text-4xl xl:text-4xl text-white font-bold font-playfair">3-4 BHK Ready Apartment at Noroda, Ahmedabad</h1>
+                    <h1 className="text-4xl xl:text-4xl text-white font-bold font-playfair">{propertyName}</h1>
                     <p className="text-white text-lg lg:text-lg lg:mx-auto">
-                    Swati Satkar Premium, ITI Rd, Kuber Nagar, Ahmedabad, Gujarat 382340                                    
+                    {propertyLocation}                                
                     </p>
                 </div>
             </div>

@@ -17,10 +17,9 @@ import {ListingContext} from '../contexts/ListingContextProvider'
 
 export default function ThreedTour({pageContext}) {
     const {listings} = useContext(ListingContext)
-    console.log(listings)
     return (
         <LayoutNoFooter>
-            <Filters/>
+            {/* <Filters/> */}
             <div className="vt-showcase mx-auto relative z-10" >
                 <div className="grid lg:grid-cols-8 2xl:grid-cols-12">
                     <div className="col-span-2 2xl:col-span-4 border-r border-gray-100">

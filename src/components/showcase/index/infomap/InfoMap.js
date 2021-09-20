@@ -1,10 +1,15 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
+import axiosConfig from '../../../../axiosConfig';
 import {Markup} from 'interweave'
 import InfoSlider from './InfoSlider'
 import IndexLayout from '../IndexLayout'
+import Loader from '../../../Loader'
+import Error from '../../../Error'
 
-export default function InfoMap() {
-    const infoMapData = {
+export default function InfoMap({pageContext}) {
+    const [infoMapData, setInfoMapData] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const infoMapData1 = {
         id: 1,
         propertyId : "H-4960-property",
         propertyName: "3-4 BHK Ready Apartment at Noroda, Ahmedabad",
@@ -20,7 +25,10 @@ export default function InfoMap() {
             carpetArea: "2070",
             propertyType: "Ready To Move In",
             bookingType: "New",
-            price: 6000000
+            price: {
+                min_price: "45000000",
+                max_price: "55000000"
+            }
         },
         fetaures:[
             {
@@ -45,8 +53,27 @@ export default function InfoMap() {
             },
         ]
     }
-    return (
-        <IndexLayout>
+    useEffect(()=>{
+        axiosConfig.get('/propertyInfoAndMap',{
+            params: {
+                id: parseInt(pageContext.id),
+            }
+        })
+        .then(function (response) {  
+            setLoading(false)
+            response.data.error ? setInfoMapData(null) : setInfoMapData(response.data.data)
+            
+        })
+        .catch(function (error) {
+            setLoading(false)
+            setInfoMapData(null);
+        })
+    },[])
+    return loading ? 
+        <Loader/> : 
+        (
+            infoMapData !== null ?
+            <IndexLayout>
             <InfoSlider propertyName={infoMapData.propertyName} propertyLocation={infoMapData.propertyLocation} bannerImages={infoMapData.bannerImages}/>
             <div className="px-4 lg:px-8 bg-white pb-8">
                 <div className="2xl:max-w-screen-xl mx-auto grid grid-cols-1 gap-4 pt-8 pb-8 px-4 xl:px-0 text-xs">
@@ -114,7 +141,7 @@ export default function InfoMap() {
                             </div>
                             <div>
                                 <h6>For Sale</h6>
-                                <h5 className="font-bold text-2xl">₹ {infoMapData.buildDetails.price}</h5>
+                                <h5 className="font-bold text-lg">₹ {infoMapData.buildDetails.price.min_price} to ₹ {infoMapData.buildDetails.price.max_price}</h5>
                             </div>
                         </div>
                         </div>
@@ -138,5 +165,8 @@ export default function InfoMap() {
                 </div>
             </div>
         </IndexLayout>
+        :
+        <Error/>
+        
     )
 }

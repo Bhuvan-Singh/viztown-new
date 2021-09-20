@@ -6,7 +6,6 @@ import Showcase from '../../components/showcase/Showcase'
 export default function index() {
     return (
         <LayoutNoFooter>
-            <Filters/>
             <Showcase/>
         </LayoutNoFooter>
     )

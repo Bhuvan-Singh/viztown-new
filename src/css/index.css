@@ -3,7 +3,10 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-
+@import "~react-image-gallery/styles/css/image-gallery.css";
+html {
+    scroll-behavior: smooth;
+  }
 body{
     font-family: 'Poppins';
 }
@@ -56,4 +59,133 @@ body{
 }
 .nav-slider .slick-slide.slick-active.slick-current img {
     opacity: 0.7;
+}
+.fullscreen.fullscreen-enabled{
+    background: #fff;
+}
+.fullscreen.fullscreen-enabled .exit-full-screen{
+    display: block;
+}
+.fullscreen.fullscreen-enabled .enter-full-screen{
+    display: none;
+}
+.exit-full-screen{
+    display: none;
+}
+.enter-full-screen{
+    display: block;
+}
+
+.image-gallery-thumbnail-label {
+    background: #FFCA18;
+    border-radius: 50px;
+    text-shadow: none;
+    font-weight: 700;
+}
+.image-gallery-thumbnail {
+    width: 120px;
+}
+.image-gallery-thumbnail-label {
+    background: #FFCA18;
+    border-radius: 50px;
+    text-shadow: none;
+    font-weight: 700;
+    width: 80%;
+    left: 10%;
+    top: auto;
+    bottom: 10%;
+    color: #222222;
+    transform: translate(0);
+    font-size: 12px;
+}
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
+    outline: none;
+    border: 4px solid #FFCA18;
+}
+.image-gallery-left-nav .image-gallery-svg, .image-gallery-right-nav .image-gallery-svg {
+    height: 70px;
+    width: 40px;
+    color: #FFCA18;
+}
+button.image-gallery-icon.image-gallery-left-nav , button.image-gallery-icon.image-gallery-right-nav{
+    filter: drop-shadow(0 1px 1px #666);
+}
+.image-gallery {
+    width: 100%;
+    height: 100%;
+}
+.image-gallery-content.bottom {
+    height: 100%;
+}
+.image-gallery-thumbnails-wrapper.bottom.thumbnails-swipe-horizontal {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+button.image-gallery-icon.image-gallery-fullscreen-button:hover {
+    color: #FFCA18;
+}
+/* .image-gallery-content .image-gallery-slide .image-gallery-image {
+    max-height: calc(100vh - 300px);
+} */
+.vt-listings-wrap.loading .vt-listing-image:after {
+    background: #eee;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    position: absolute;
+}
+
+.vt-listings-wrap.loading .vt-listing-name:after {
+    background: #eee;
+    content: "";
+    width: 70%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    position: absolute;
+}
+
+.vt-listings-wrap.loading .vt-listing-location:after {
+    background: #eee;
+    content: "";
+    width: 80%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    position: absolute;
+}
+
+.vt-listings-wrap.loading .vt-listing-address:after {
+    background: #eee;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    position: absolute;
+}
+.vt-listings-wrap.loading .vt-listing-configuration:after {
+    background: #eee;
+    content: "";
+    width: 40%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    position: absolute;
+}
+
+/* SVG */
+#svg-container svg{
+    width: 100%;
+    border: .15rem solid #eee;
+    border-radius: .15rem;
+    background-image: linear-gradient(#eee 1px,transparent 0),linear-gradient(90deg, #eee 1px,transparent 0);
+    background-position: -1px -1px;
+    transition: all 0.5s;
+}
+svg, g, path, circle {
+    transition: all 0.5s;
 }

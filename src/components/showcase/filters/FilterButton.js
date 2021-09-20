@@ -93,8 +93,9 @@ const searchedListings = [
 
 export default function FilterButton() {
     const filterState =  useContext(FilterStateContext);
-    const {setListings} = useContext(ListingContext)
+    const {setListings, setListingLoading} = useContext(ListingContext)
     const updateListings = () => {
+        setListingLoading(true);
         let location = [];
         filterState.location.map((loc)=>{
             location.push(loc.value)
@@ -109,13 +110,9 @@ export default function FilterButton() {
         })
         .then(function (response) {
             setListings(response.data.data);
-            console.log("length is" + response.data.data.length)
-            console.log(filterState)
-            // if(response.data.data.length > 0) {
-            //     navigate("/showcase/" + response.data.data[0].slug)
-            // }else{
-            //     navigate("/showcase")
-            // }
+            setListingLoading(false);
+            // navigate('/showcase/')
+            navigate("/showcase/" + response.data.data[0].slug)
             
         })
         .catch(function (error) {

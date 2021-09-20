@@ -6,7 +6,6 @@ import * as styles from '../../../css/index/index-navigation.module.css'
 export default function Navigation({slug, listId}) {
     const {isResidential} = useContext(CommonContext)
     const hideSpaceCalculatorClass = isResidential ? 'hidden' : ' ';
-    console.log("isResidential" + isResidential)
     return (
         <div className={`relative w-full bg-processbg absolute top-0 py-2 z-10 md:flex items-center mx-auto capitalize justify-center gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto ${styles.vtIndexHeader}`}>
             <Link 

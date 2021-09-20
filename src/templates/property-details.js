@@ -15,8 +15,7 @@ import InfoMap from '../components/showcase/index/infomap/InfoMap'
 export default function PropertyDetails({pageContext}) {
     const {listings} = useContext(ListingContext)
     return (
-        <LayoutNoFooter>
-            <Filters/>
+        <LayoutNoFooter pageContext={pageContext}>
             <div className="vt-showcase mx-auto relative z-10" >
                 <div className="grid lg:grid-cols-8 2xl:grid-cols-12">
                     <div className="col-span-2 2xl:col-span-4 border-r border-gray-100">
@@ -25,7 +24,7 @@ export default function PropertyDetails({pageContext}) {
                     <OwnerDetails pageContext={pageContext} viewSlug={`/${pageContext.slug}`}/>
                     <div className="lg:col-span-4 2xl:col-span-5 bg-gray-100 relative">
                         <Navigation slug={`/showcase/${pageContext.slug}`} listId={pageContext.id}/>
-                        <InfoMap/>
+                        <InfoMap pageContext={pageContext}/>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,6 @@ export default function Category() {
 
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
-    console.log(categoryList)
     const customStyles = {
         control: (provided, state) => ({
             ...provided,

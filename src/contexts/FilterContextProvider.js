@@ -1,4 +1,5 @@
 import React, {createContext, useReducer, useEffect} from 'react'
+import axiosConfig from '../axiosConfig';
 
 export const FilterStateContext = createContext();
 export const FilterDispatchContext = createContext();
@@ -54,7 +55,19 @@ const filterReducer = (state, action) => {
 }
 
 export default function FilterContextProvider({children}) {
+    
     const [filter, filterDispatcher] = useReducer(filterReducer, initialFilters);
+    // useEffect(()=>{
+    //     axiosConfig.get('/propertyBudgetRange')
+    //     .then(function (response) {
+    //         // setListings(response.data.data);
+    //         const budgetRange = [parseInt(response.data.data.minValue),parseInt(response.data.data.maxValue)]
+    //         filterDispatcher({ type: 'BUDGET', payload: budgetRange })
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     })
+    // },[])
     return(
         <FilterStateContext.Provider value={filter}>
             <FilterDispatchContext.Provider value={filterDispatcher}>

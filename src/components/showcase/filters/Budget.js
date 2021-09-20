@@ -6,8 +6,8 @@ import {FilterStateContext, FilterDispatchContext} from '../../../contexts/Filte
 export default function Budget() {
 
     const STEP = 5000;
-    const MIN = 0;
-    const MAX = 7000000;
+    const [MIN,setMIN] = useState(0);
+    const [MAX,setMax] = useState(7000000);
     const filterState =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const handleChange = (values) => {
@@ -17,6 +17,17 @@ export default function Budget() {
         const b = document.getElementById('vt-search-relative-budget').classList.toggle('hidden');
     }
     const values = filterState.budget;
+
+    useEffect(()=>{
+        axiosConfig.get('/propertyBudgetRange')
+        .then(function (response) {
+            setMIN(parseInt(response.data.data.minValue))
+            setMax(parseInt(response.data.data.maxValue))
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    },[])
     return (
         <div className="w-48 relative">
             <div className="vt-search-budget flex items-center justify-between px-4 py-4 cursor-pointer relative" onClick={toggleBudgetDropdown}>
