@@ -12,10 +12,10 @@ export default function Showcase() {
         <div className="vt-showcase mx-auto relative z-10">
             {listings.length > 0 ? 
             <div className="grid grid-cols-11">
-                <div className="col-span-6">
+                <div className="col-span-11 lg:col-span-6">
                     <Listings lgGrid="2" twoXlGrid="3" />
                 </div>
-                <div className="col-span-5 relative">
+                <div className="hidden lg:block col-span-5 relative ">
                     <Map/>
                 </div>
             </div> :

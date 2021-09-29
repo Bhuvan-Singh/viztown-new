@@ -1,15 +1,30 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {Link, navigate} from 'gatsby'
 import {auth} from "../../../services/firebase";
+import {AuthContext} from '../../../contexts/AuthContextProvider'
 import { signOut } from "firebase/auth";
 import * as styles from '../../../css/dashboard/header.module.css'
 
 export default function Header() {
-    const userDetails = JSON.parse(localStorage.getItem('vendor'))
+    const [userDetails, setuserDetails] = useState(null)
+    const {user, setUser} = useContext(AuthContext)
+    console.log(user)
+    // useEffect(()=>{
+    //     // setuserDetails(user.vendor)
+    // },[])
+    
     const handleLogout = () => {
-        signOut(auth);
-        localStorage.removeItem('vendor')
-        localStorage.removeItem('vendor_id')
+        signOut(auth)
+        .then(function() {
+        localStorage.removeItem('user')
+        setUser(null)
+        navigate('/login/')
+
+        }).catch(function(error) {
+        // An error happened.
+        });
+        
+        // localStorage.removeItem('vendor_id')
     }
     
     return (
@@ -33,7 +48,7 @@ export default function Header() {
                         <span className="absolute w-5 h-5 bg-secondary rounded-full flex items-center justify-center -top-1 -right-2 text-xs text-white font-regular">5</span>
                     </Link>
                     <Link to="/dashboard/profile" className="vt-dashboard-profile relative ">
-                        <img src={userDetails.profile} className="w-9 h-9 rounded-full bg-white object-contain"/>
+                        <img src={user === null ? "" : user.vendor.profile} className="w-9 h-9 rounded-full bg-white object-contain"/>
                     </Link>
                     <button className="bg-secondary px-3 rounded-sm py-2 font-bold leading-none text-white hover:text-white text-xs" onClick={handleLogout}>Logout</button>
                 </div>

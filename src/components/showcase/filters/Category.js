@@ -104,10 +104,10 @@ export default function Category() {
     const defaultValueIndex = options.findIndex(x => x.value === filterState.category);
     
     return (
-        <div className="w-36 vt-search-category flex items-center justify-between px-4 border-r border-grey cursor-pointer relative" >
+        <div className="lg:w-36 vt-search-category flex items-center justify-between lg:px-4 border-b-2 lg:border-b-0 lg:border-r border-grey cursor-pointer relative z-40" >
             { typeof window !== 'undefined' && (
             <Select
-            className="w-full" 
+            className="w-full z-50 relative" 
             value = {
                 categoryList.filter(option => 
                    option.value === filterState.category)

@@ -3,10 +3,10 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import {navigate} from 'gatsby'
 import { ListingContext } from '../../../contexts/ListingContextProvider';
 
-export default function Map({propId = null}) {
+export default function Map({propId = null,details = null}) {
     const {listings} = useContext(ListingContext)
     const zoom = propId === null ? 12 : 20;
-    const listingID = propId === null ? 0 : parseInt(propId)
+    const center = details === null ? listings[0].coordinates : details.coordinates
     const mapContainerStyle = {
         width: '100%',
         height: '100%'
@@ -23,10 +23,10 @@ export default function Map({propId = null}) {
                 id="vt-map"
                 mapContainerStyle={mapContainerStyle}
                 zoom={zoom}
-                center={listings[listingID].coordinates}
+                center={center}
             >
                 {listings.map((listing,index) => {
-                    const icon = propId === index ? "https://img.icons8.com/ultraviolet/40/000000/marker.png" : "https://img.icons8.com/offices/40/000000/marker.png";
+                    const icon = listing.id == propId ? "https://img.icons8.com/ultraviolet/40/000000/marker.png" : "https://img.icons8.com/offices/40/000000/marker.png";
                     return (
                     <Marker
                     key={index}

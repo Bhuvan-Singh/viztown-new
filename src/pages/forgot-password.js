@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useContext, useState} from 'react'
 import {Link, navigate} from 'gatsby'
 import { Formik } from "formik"
 import * as Yup from "yup"
@@ -9,19 +9,21 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import 'react-toastify/dist/ReactToastify.css'
 import Loader from '../components/Loader'
 import Layout from '../components/Layout'
-
+import {AuthContext} from "../contexts/AuthContextProvider"
 
 export default function ForgotPassword() {
-    const [user, loading, error] = useAuthState(auth);
+    // const [user, loading, error] = useAuthState(auth);
+    const [loading, setLoading] = useState(true)
+    const {user} = useContext(AuthContext)
     useEffect(() => {
-        if (loading) {
-          return;
-        }
-        if (user) navigate('/dashboard')
+        // if (loading) {
+        //   return;
+        // }
+        if (user !== null) navigate('/dashboard')
     }, [user, loading]);
     return (
-        <Layout>
-            <div className="w-1/4 2xl:w-1/5 mx-auto">
+        <Layout fixedHeader={false}>
+            <div className="w-4/5 lg:w-1/4 2xl:w-1/5 mx-auto">
                 <Formik
                     initialValues={{ email: "", password: "" }}
                     onSubmit={(values, { setSubmitting }) => {

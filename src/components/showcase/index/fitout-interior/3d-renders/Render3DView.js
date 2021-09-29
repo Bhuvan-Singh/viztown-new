@@ -9,7 +9,7 @@ import ImageGallery from 'react-image-gallery';
 import Loader from '../../../../Loader'
 import Error from '../../../../Error'
 
-export default function Render3DView({pageContext, fullView}) {
+export default function Render3DView({slug, fullView}) {
     const [rendersData, setRendersData] = useState(null)
     const [loading, setLoading] = useState(true)
     const renders = [
@@ -133,7 +133,7 @@ export default function Render3DView({pageContext, fullView}) {
     useEffect(()=>{
         axiosConfig.get('/property3dRender',{
             params: {
-                id: parseInt(pageContext.id),
+                slug: slug,
             }
         })
         .then(function (response) {  
@@ -148,13 +148,13 @@ export default function Render3DView({pageContext, fullView}) {
 
     return (
         <IndexLayout>
-            <NavigationFI slug={`/showcase/${pageContext.slug}`} listId={pageContext.id}/>
+            <NavigationFI slug={`/showcase/${slug}`}/>
             { typeof window !== 'undefined' && (
                 loading ? 
                <Loader/> :
                 rendersData !== null ?
             <Tabs>
-                <TabList className="tabs relative w-full bg-primary top-0 py-1 z-10 flex items-center mx-auto capitalize justify-center gap-4 text-xs font-semibold text-white" style={{height:'40px'}}>
+                <TabList className="tabs text-white text-xs font-semibold relative w-screen lg:w-full bg-primary absolute top-0 py-2 z-10 flex items-center mx-auto capitalize md:justify-center  gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto" style={{height:'40px'}}>
                     {
                         rendersData.map((render,index) => (
                             <Tab key={index} className="border-0 cursor-pointer rounded-3xl px-4 py-2" selectedClassName="bg-secondary text-primary">{render.tab}</Tab>
@@ -165,7 +165,7 @@ export default function Render3DView({pageContext, fullView}) {
                     {rendersData.map((render,index) => (
                         <TabPanel className="h-full hidden" selectedTabPanelClassName="block" key={index}>
                             {/* <SliderWithNavigation images={render.images} iframe={render.iframe} fullView={fullView}/> */}
-                            <div className="relative w-9/12 2xl:w-full h-full flex justify-center items-center mx-auto">
+                            <div className="relative w-full lg:w-9/12 2xl:w-full h-full flex justify-center items-center mx-auto">
                                 <ImageGallery items={render.images} slideOnThumbnailOver={true} infinite={true}/>
                             </div>
                         </TabPanel>

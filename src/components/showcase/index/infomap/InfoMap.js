@@ -1,62 +1,36 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, useContext} from 'react'
 import axiosConfig from '../../../../axiosConfig';
 import {Markup} from 'interweave'
 import InfoSlider from './InfoSlider'
 import IndexLayout from '../IndexLayout'
 import Loader from '../../../Loader'
 import Error from '../../../Error'
+import {CommonContext} from '../../../../contexts/CommonContextProvider'
 
-export default function InfoMap({pageContext}) {
+export default function InfoMap({slug}) {
     const [infoMapData, setInfoMapData] = useState(null)
     const [loading, setLoading] = useState(true)
-    const infoMapData1 = {
-        id: 1,
-        propertyId : "H-4960-property",
-        propertyName: "3-4 BHK Ready Apartment at Noroda, Ahmedabad",
-        propertyLocation: "Swati Satkar Premium, ITI Rd, Kuber Nagar, Ahmedabad, Gujarat 382340",
-        bannerImages: [
-            "http://cyberworx.co.in/viztown_new/upload/gallery/1383277452001_001.jpg",
-            "http://cyberworx.co.in/viztown_new/upload/gallery/1512039038003.jpg"
-        ],
-        propertyDescription: "<p>Satkar Premium is a premium commercial cum residential development of Swati Associates . With commercial shops on the ground floor and apartments above, Satkar Premium offers something unique for every customer. The project is well equipped with all the basic amenities to facilitate the needs of the residents. The property has 3 BHK &amp; 4 BHK apartments that are ready to move in.</p><p>Satkar Premium is a premium commercial cum residential development of Swati Associates . With commercial shops on the ground floor and apartments above, Satkar Premium offers something unique for every customer. The project is well equipped with all the basic amenities to facilitate the needs of the residents. The property has 3 BHK &amp; 4 BHK apartments that are ready to move in.</p>",
-        buildDetails: {
-            buildYear: "2020",
-            buildUpArea: "2070",
-            carpetArea: "2070",
-            propertyType: "Ready To Move In",
-            bookingType: "New",
-            price: {
-                min_price: "45000000",
-                max_price: "55000000"
-            }
-        },
-        fetaures:[
-            {
-                icon: "http://cyberworx.co.in/viztown_new/upload/img/d5f820846c179bb3f393a946de25fcb5.svg",
-                title: "Lift"
-            },
-            {
-                icon: "http://cyberworx.co.in/viztown_new/upload/img/d5f820846c179bb3f393a946de25fcb5.svg",
-                title: "GYM"
-            },
-            {
-                icon: "http://cyberworx.co.in/viztown_new/upload/img/d5f820846c179bb3f393a946de25fcb5.svg",
-                title: "Security"
-            },
-            {
-                icon: "http://cyberworx.co.in/viztown_new/upload/img/d5f820846c179bb3f393a946de25fcb5.svg",
-                title: "Swimming Pool"
-            },
-            {
-                icon: "http://cyberworx.co.in/viztown_new/upload/img/d5f820846c179bb3f393a946de25fcb5.svg",
-                title: "CCTV"
-            },
-        ]
-    }
+    const {setFitoutMenuStatus, setActiveSlug} = useContext(CommonContext);
+    
     useEffect(()=>{
+        setActiveSlug(slug)
+        setLoading(true)
+
+        axiosConfig.get('/propertyFitoutMenuStatus',{
+            params: {
+                slug: slug,
+            }
+        })
+        .then(function (response) {  
+            setFitoutMenuStatus(response.data.data)
+        })
+        .catch(function (error) {
+            setFitoutMenuStatus(null);
+        })
+        
         axiosConfig.get('/propertyInfoAndMap',{
             params: {
-                id: parseInt(pageContext.id),
+                slug: slug,
             }
         })
         .then(function (response) {  
@@ -68,7 +42,10 @@ export default function InfoMap({pageContext}) {
             setLoading(false)
             setInfoMapData(null);
         })
-    },[])
+
+        
+
+    },[slug])
     return loading ? 
         <Loader/> : 
         (
@@ -93,7 +70,7 @@ export default function InfoMap({pageContext}) {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
                         <div className="flex items-center gap-4 text-primary">
                             <div>
-                                <img className="w-8 h-8" src="http://cyberworx.co.in/viztown_new/assets/images/calendar.svg" alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/calendar.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Year of Build</h6>
@@ -102,7 +79,7 @@ export default function InfoMap({pageContext}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src="http://cyberworx.co.in/viztown_new/assets/images/area.svg" alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/area.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Build Up Area</h6>
@@ -111,7 +88,7 @@ export default function InfoMap({pageContext}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary">
                             <div>
-                                <img className="w-8 h-8" src="http://cyberworx.co.in/viztown_new/assets/images/selection.svg" alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/selection.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Carpet Area</h6>
@@ -120,7 +97,7 @@ export default function InfoMap({pageContext}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src="http://cyberworx.co.in/viztown_new/assets/images/building.svg" alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/building.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Property Type</h6>
@@ -129,19 +106,18 @@ export default function InfoMap({pageContext}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src="http://cyberworx.co.in/viztown_new/assets/images/story.svg" alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/story.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Booking Type</h6>
                                 <h5 className="font-bold">{infoMapData.buildDetails.bookingType}</h5>
                             </div>
                         </div>
-                        <div className="flex items-center gap-4 text-primary bg-secondary py-3">
-                            <div className="w-8">
-                            </div>
+                        <div className="flex items-center gap-4 text-primary bg-secondary py-3 px-4">
                             <div>
                                 <h6>For Sale</h6>
-                                <h5 className="font-bold text-lg">₹ {infoMapData.buildDetails.price.min_price} to ₹ {infoMapData.buildDetails.price.max_price}</h5>
+                                <h5 className="font-bold text-xs">₹ {infoMapData.buildDetails.price.min_price} to ₹ {infoMapData.buildDetails.price.max_price}</h5>
+                                <h5 className="font-bold text-xs mt-2">({infoMapData.sqft_price})</h5>
                             </div>
                         </div>
                         </div>

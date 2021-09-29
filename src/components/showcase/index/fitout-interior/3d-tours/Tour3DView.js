@@ -8,17 +8,18 @@ import SliderWithNavigation from '../../SliderWithNavigation'
 import Loader from '../../../../Loader'
 import Error from '../../../../Error'
 
-export default function Tour3DView({pageContext, fullView}) {
+export default function Tour3DView({slug, fullView}) {
     const [toursData, setToursData] = useState(null)
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         axiosConfig.get('/property3dTour',{
             params: {
-                id: parseInt(pageContext.id),
+                slug: slug,
             }
         })
         .then(function (response) {  
             setLoading(false)
+            console.log(response.data.data)
             response.data.error ? setToursData(null) : setToursData(response.data.data)
         })
         .catch(function (error) {
@@ -113,13 +114,13 @@ export default function Tour3DView({pageContext, fullView}) {
     ]
     return (
         <IndexLayout>
-            <NavigationFI slug={`/showcase/${pageContext.slug}`} listId={pageContext.id}/>
+            <NavigationFI slug={`/showcase/${slug}`} />
             { typeof window !== 'undefined' && (
                 loading ? 
                 <Loader/> :
                 toursData !== null ?
             <Tabs>
-                <TabList className="tabs relative w-full bg-primary top-0 py-1 z-10 flex items-center mx-auto capitalize justify-center gap-4 text-xs font-semibold text-white" style={{height:'40px'}}>
+                <TabList className="text-white text-xs font-semibold relative w-screen lg:w-full bg-primary absolute top-0 py-2 z-10 flex items-center mx-auto capitalize md:justify-center  gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto" style={{height:'40px'}}>
                     {
                         toursData.map((tour,index) => (
                             <Tab key={index} className="border-0 cursor-pointer rounded-3xl px-4 py-2" selectedClassName="bg-secondary text-primary">{tour.tab}</Tab>
@@ -129,7 +130,8 @@ export default function Tour3DView({pageContext, fullView}) {
                 <div className="bg-grey" style={{height:'calc(100vh - 250px)'}}>
                     {toursData.map((tour,index) => (
                         <TabPanel className="h-full hidden" selectedTabPanelClassName="block" key={index}>
-                            <SliderWithNavigation images={tour.images} iframe={tour.iframe} fullView={fullView}/>
+                            {/* <SliderWithNavigation images={tour.images} iframe={tour.iframe} fullView={fullView}/> */}
+                            <iframe className="w-full h-full" allowFullScreen={true} height="100%" width="100%" src={tour.images[0].matterportUrl}></iframe> 
                         </TabPanel>
                     ))}
                 </div>

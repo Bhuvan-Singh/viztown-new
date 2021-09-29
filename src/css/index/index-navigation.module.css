@@ -1,3 +1,8 @@
 .vt-index-header{
     height: 40px;
 }
+@media screen and (max-width: 768px) {
+    .vt-index-header{
+        height: 45px;
+    }
+}

@@ -9,10 +9,10 @@ export default function PinchZoom({image}) {
             initialScale={1}
         >
             {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
-                <div className="lg:w-9/12 2xl:w-11/12 mx-auto overflow-hidden mt-4 border-2 border-gray-100 p-2 flex-col items-center justify-center">
-                    <div className="border-2 border-grey border-opacity-50 p-2 bg-white">
-                        <TransformComponent>
-                            <img src={image} alt="test" />
+                <div className="lg:w-9/12 2xl:w-11/12 mx-auto overflow-hidden mt-4 border-2 border-gray-100 p-2 flex-col items-center justify-center" >
+                    <div className="border-2 border-grey border-opacity-50 p-2 bg-white flex justify-center items-center">
+                        <TransformComponent className="mx-auto">
+                            <img src={image} style={{height:"calc(100vh - 340px)"}} alt="test" className="mx-auto"/>
                         </TransformComponent>
                     </div>
                     

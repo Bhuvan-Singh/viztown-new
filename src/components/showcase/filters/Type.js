@@ -33,8 +33,8 @@ export default function Type() {
     }
     
     return (
-        <div className="w-48 relative">
-            <div className="vt-search-type flex items-center justify-between px-4 py-4 border-r border-grey cursor-pointer" onClick={toggleTypeDropdown}>
+        <div className="w-full lg:w-48 relative z-20 ">
+            <div className="vt-search-type flex items-center justify-between lg:px-4 py-4 lg:border-r border-grey cursor-pointer border-b-2 lg:border-b-0" onClick={toggleTypeDropdown}>
                 {
                     filterState.type.length == 0 ? 
                     <span className="vt-search-title text-xs text-primary font-semibold">Property Type</span> :
@@ -53,7 +53,7 @@ export default function Type() {
                 </span>
             </div>
 
-            <div id="vt-search-relative-type" className="hidden vt-search-relative absolute w-96 bg-grey top-full left-0 shadow-md rounded-b-md">
+            <div id="vt-search-relative-type" className="hidden vt-search-relative absolute lg:w-96 bg-grey top-full left-0 shadow-md rounded-b-md">
                 <div onClick={toggleTypeDropdown} className="absolute right-2 top-2 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 font-bold" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd">

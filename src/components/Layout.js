@@ -5,11 +5,11 @@ import Transition from './Transition'
 import "../css/index.css"
 import axiosConfig from '../axiosConfig';
 
-export default function Layout({children}) {
+export default function Layout({children, fixedHeader=true}) {
     
     return (
-        <div>
-            <Header/>
+        <div className="">
+            <Header isFixed={fixedHeader}/>
             <div className="content">
                 {children}
             </div>

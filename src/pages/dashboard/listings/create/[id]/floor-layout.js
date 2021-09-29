@@ -24,7 +24,7 @@ export default function FloorLayoutData(props) {
             console.log(error);
         })
 
-        axiosConfig.get('/floorLayoutData',{
+        axiosConfig.get('/floorLayoutDataById',{
             params: {
                 id: parseInt(props.params.id),
             }

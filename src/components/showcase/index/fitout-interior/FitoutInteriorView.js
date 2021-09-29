@@ -9,28 +9,14 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import Loader from '../../../Loader'
 import Error from '../../../Error'
 
-export default function FitoutInteriorView({pageContext, fullView}) {
+export default function FitoutInteriorView({slug, fullView}) {
     const [floorLayoutsData, setFloorLayoutsData] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const floorLayouts = [
-        {
-            tab: "Modern",
-            image : "http://cyberworx.co.in/viztown_new/upload/showcase/9e6c81733e4d24e56b24050a6cbeade7.png",
-        },
-        {
-            tab: "Conventional",
-            image : "http://cyberworx.co.in/viztown_new/upload/showcase/9e6c81733e4d24e56b24050a6cbeade7.png",
-        },
-        {
-            tab: "Semi-Conventional",
-            image : "http://cyberworx.co.in/viztown_new/upload/showcase/9e6c81733e4d24e56b24050a6cbeade7.png",
-        },
-    ]
     useEffect(()=>{
         axiosConfig.get('/floorLayoutData',{
             params: {
-                id: parseInt(pageContext.id),
+                slug: slug,
             }
         })
         .then(function (response) {  
@@ -46,14 +32,14 @@ export default function FitoutInteriorView({pageContext, fullView}) {
     const handle = useFullScreenHandle();
     return (
         <IndexLayout>
-            <NavigationFI slug={`/showcase/${pageContext.slug}`} listId={pageContext.id} floorLayoutsData={floorLayoutsData}/>
+            <NavigationFI slug={`/showcase/${slug}`} floorLayoutsData={floorLayoutsData}/>
             { typeof window !== 'undefined' && (
                 loading ? 
                 <Loader/> :
                 floorLayoutsData !== null ?
                 <FullScreen className="relative" handle={handle}>
             <Tabs>
-                <TabList className="tabs relative w-full bg-primary top-0 py-1 z-10 flex items-center mx-auto capitalize justify-center gap-4 text-xs font-semibold text-white" style={{height:'40px'}}>
+                <TabList className="text-white text-xs font-semibold relative w-screen lg:w-full bg-primary absolute top-0 py-2 z-10 flex items-center mx-auto capitalize md:justify-center  gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto" style={{height:'40px'}}>
                     {
                         floorLayoutsData.map((layout,index) => (
                             <Tab key={index} className="border-0 cursor-pointer rounded-3xl px-4 py-2" selectedClassName="bg-secondary text-primary">{layout.tab}</Tab>

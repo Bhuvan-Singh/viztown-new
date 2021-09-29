@@ -52,7 +52,7 @@ export default function InfoMapData(props) {
     const [bannerImages, setBannerImages] = useState("")
 
     useEffect(()=>{
-        axiosConfig.get('/propertyInfoAndMap',{
+        axiosConfig.get('/propertyInfoAndMapById',{
             params: {
                 id: parseInt(props.id),
             }
@@ -61,9 +61,9 @@ export default function InfoMapData(props) {
             let featureArray = [];
             
             const infoMapData = response.data.error ? null : response.data.data
-            infoMapData === null ? setInitialValues({info_id:"", id: props.params.id, heading: "", subheading: "", description: "", build_year:"", build_area: "", carpet_area: "", property_type: "", booking_type: "", min_price:"",max_price: "", banner:"", feature:""}) :
+            infoMapData === null ? setInitialValues({info_id:"", id: props.params.id, heading: "", subheading: "", description: "", build_year:"", build_area: "", carpet_area: "", property_type: "", booking_type: "", min_price:"",max_price: "", banner:"", feature:"", sqft_price:""}) :
 
-            setInitialValues({info_id:infoMapData.id, id: props.params.id, heading: infoMapData.propertyName , subheading: infoMapData.propertyLocation, description: infoMapData.propertyDescription , build_year:infoMapData.buildDetails.buildYear, build_area: infoMapData.buildDetails.buildUpArea, carpet_area: infoMapData.buildDetails.carpetArea, property_type: infoMapData.buildDetails.propertyType, booking_type: infoMapData.buildDetails.bookingType, min_price:infoMapData.buildDetails.price.min_price,max_price: infoMapData.buildDetails.price.max_price, banner:infoMapData.bannerImages, feature:featureArray})
+            setInitialValues({info_id:infoMapData.id, id: props.params.id, heading: infoMapData.propertyName , subheading: infoMapData.propertyLocation, description: infoMapData.propertyDescription , build_year:infoMapData.buildDetails.buildYear, build_area: infoMapData.buildDetails.buildUpArea, carpet_area: infoMapData.buildDetails.carpetArea, property_type: infoMapData.buildDetails.propertyType, booking_type: infoMapData.buildDetails.bookingType, min_price:infoMapData.buildDetails.price.min_price,max_price: infoMapData.buildDetails.price.max_price,sqft_price:infoMapData.sqft_price , banner:infoMapData.bannerImages, feature:featureArray})
             response.data.data.fetaures.map(feature => {
                 featureArray.push({value:feature.id, label:feature.title})
             })
@@ -71,7 +71,7 @@ export default function InfoMapData(props) {
             
         })
         .catch(function (error) {
-            setInitialValues({info_id:"", id: props.params.id, heading: "", subheading: "", description: "", build_year:"", build_area: "", carpet_area: "", property_type: "", booking_type: "", min_price:"",max_price: "", banner:"", features:""}) 
+            setInitialValues({info_id:"", id: props.params.id, heading: "", subheading: "", description: "", build_year:"", build_area: "", carpet_area: "", property_type: "", booking_type: "", min_price:"",max_price: "", banner:"", features:"", sqft_price:""}) 
         })
 
         axiosConfig.get('/getPropertyFeature')
@@ -162,15 +162,15 @@ export default function InfoMapData(props) {
                             build_area: Yup.string()
                                 .required("Type is required"),
                             carpet_area: Yup.string()
-                                .required("carpet_area is required"),
+                                .required("Carpert Area is required"),
                             build_area: Yup.string()
                                 .required("City is required"),
                             booking_type: Yup.string()
-                                .required("booking_type is required"),
+                                .required("Booking Type is required"),
                             min_price: Yup.string()
-                                .required("min_price is required"),
+                                .required("Min Price is required"),
                             max_price: Yup.string()
-                                .required("Logitude is required"),
+                                .required("Max Price is required"),
                             feature: Yup.array()
                                 .required("Features are required")
                         })}
@@ -335,6 +335,22 @@ export default function InfoMapData(props) {
                                         />
                                         {errors.max_price && touched.max_price && (
                                             <div className="input-feedback text-red-400 text-xs font-semibold capitalize">{errors.max_price}</div>
+                                        )}
+                                    </div>
+
+                                    <div className="w-full flex flex-col gap-2">
+                                        <label className="text-sm font-semibold text-primary" htmlFor="email">Per Sq.Ft. Price</label>
+                                        <input
+                                            name="sqft_price"
+                                            type="text"
+                                            placeholder="Enter Property Per Sq.Ft. Price"
+                                            value={values.sqft_price}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            className={`outline-none border border-gray-300 p-4 h-11 bg-white text-xs font-semibold rounded-md ${errors.sqft_price && touched.sqft_price && "error"}`}
+                                        />
+                                        {errors.sqft_price && touched.sqft_price && (
+                                            <div className="input-feedback text-red-400 text-xs font-semibold capitalize">{errors.sqft_price}</div>
                                         )}
                                     </div>
                                 </div>

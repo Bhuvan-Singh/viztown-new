@@ -14,27 +14,32 @@ import Layout from '../components/Layout'
 
 
 export default function Login() {
-    const [user, loading, error] = useAuthState(auth);
-    const [setUser] = useContext(AuthContext)
+    // const [user, loading, error] = useAuthState(auth);
+    const [loading,setLoading] = useState(true)
+    const {user,setUser} = useContext(AuthContext)
     
     useEffect(() => {
+        console.log(user)
         if (user) {
             navigate('/dashboard')
             // return 
+        }else{
+            setLoading(false);
         }
     }, [user]);
 
     return (
-        <Layout>
+        <Layout fixedHeader ={false}>
             {(user || loading ) ? 
                 <div className="flex justify-center items-center w-full h-screen bg-grey" style={{minHeight: "480px"}}>
                     <span className="font-semibold"><img src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif" alt="loading" /></span>
                 </div> 
                 :
-            <div className="w-1/4 2xl:w-1/5 mx-auto " style={{minHeight: "450px"}}>
+            <div className="w-4/5 lg:w-1/4 2xl:w-1/5 mx-auto " style={{minHeight: "450px"}}>
                 <Formik
                     initialValues={{ email: "", password: "" }}
                     onSubmit={(values, { setSubmitting }) => {
+                        // setUser("userDetails")
                         signInWithEmailAndPassword(auth, values.email, values.password)
                         .then((userCredential) => {
                             const user = userCredential.user;
@@ -54,11 +59,19 @@ export default function Login() {
                                     draggable: true,
                                     progress: undefined,
                                 });
-                                localStorage.setItem('vendor', JSON.stringify(response.data.data))
-                                localStorage.setItem('vendor_id', parseInt(response.data.data.id))
-                                navigate('/dashboard')
+                                const userDetails = {
+                                    vendor: response.data.data,
+                                    user: user
+                                }
+                                // localStorage.setItem('vendor', JSON.stringify(response.data.data))
+                                // localStorage.setItem('vendor_id', parseInt(response.data.data.id))
+                                localStorage.setItem('user', JSON.stringify(userDetails))
+                                setUser(userDetails)
+                                setTimeout(() => {
+                                    navigate('/dashboard')
+                                }, 2000);
                             })
-                            .error(error => {
+                            .catch(error => {
                                 setSubmitting(false);
                                 toast.error('An error occured. Please try again', {
                                     position: "top-right",
@@ -105,7 +118,8 @@ export default function Login() {
                         isSubmitting,
                         handleChange,
                         handleBlur,
-                        handleSubmit
+                        handleSubmit,
+                        setUser
                     } = props;
                     return (
                         <form className="relative" onSubmit={handleSubmit}>

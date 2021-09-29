@@ -5,7 +5,7 @@ import Showcase from '../../components/showcase/Showcase'
 
 export default function index() {
     return (
-        <LayoutNoFooter>
+        <LayoutNoFooter showcase={true}>
             <Showcase/>
         </LayoutNoFooter>
     )

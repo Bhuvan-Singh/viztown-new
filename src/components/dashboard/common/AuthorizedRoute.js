@@ -11,7 +11,7 @@ export default function AuthorizedRoute({children, propertyId}) {
     useEffect(()=>{
         axiosConfig.get('/authorizedProperty',{
             params:{
-                vendor_id: user,
+                vendor_id: user.vendor.id,
                 id : propertyId
             }
         })

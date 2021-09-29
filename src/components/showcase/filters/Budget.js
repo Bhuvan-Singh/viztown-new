@@ -29,8 +29,8 @@ export default function Budget() {
         })
     },[])
     return (
-        <div className="w-48 relative">
-            <div className="vt-search-budget flex items-center justify-between px-4 py-4 cursor-pointer relative" onClick={toggleBudgetDropdown}>
+        <div className="lg:w-48 relative">
+            <div className="vt-search-budget flex items-center justify-between lg:px-4 py-4 cursor-pointer relative" onClick={toggleBudgetDropdown}>
                 <span className="vt-search-title text-xs text-secondary absolute top-0 font-semibold" style={{fontSize:'10px'}}>₹ Budget</span>
                 <output className="flex justify-between items-center space-x-2 text-xs text-primary no-wrap" style={{ marginTop: '0px', fontWeight:'400'}} id="output">
                     <div className="font-semibold">{filterState.budget[0]/100000} L</div> 

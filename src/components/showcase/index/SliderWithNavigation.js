@@ -1,4 +1,4 @@
-import React,{useState, useRef, useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,7 +36,7 @@ export default function SliderWithNavigation({images, iframe, fullView = false})
     let slider1 = []
     let slider2 = []
 
-    React.useEffect(() => {
+    useEffect(() => {
         setNav1(slider1)
         setNav2(slider2)
     }, [slider1, slider2])

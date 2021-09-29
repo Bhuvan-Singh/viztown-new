@@ -16,7 +16,7 @@ module.exports = {
       },
     },
   ],
-  pathPrefix: `/viztown-2.0`,
+  pathPrefix: `/stagingsetup`,
 
 };
 

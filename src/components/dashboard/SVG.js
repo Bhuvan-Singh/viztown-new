@@ -56,6 +56,7 @@ export default function SVG() {
                 /* var rect = svg.getElementById("box"); */
                 var pt = svgDoc.createSVGPoint();
                 svgDoc.addEventListener("mousedown", alert_click, false);
+                
                 function moveSection(idStr, xOffset, yOffset) {
                     var domElemnt = document.getElementById(idStr);
                     if (domElemnt) {
