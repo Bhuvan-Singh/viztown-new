@@ -29,7 +29,7 @@ export default function ForgotPassword() {
                     onSubmit={(values, { setSubmitting }) => {
                         sendPasswordResetEmail(auth, values.email)
                         .then((result) => {
-                            console.log(result)
+
                             setSubmitting(false);
                             toast.success('Password reset email sent.', {
                                 position: "top-right",
@@ -42,7 +42,6 @@ export default function ForgotPassword() {
                             });
                         })
                         .catch((error) => {
-                            console.log(error)
                             setSubmitting(false);
                             const errorCode = error.code;
                             const errorMessage = error.message;

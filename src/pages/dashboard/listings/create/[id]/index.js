@@ -25,7 +25,7 @@ export default function EditListing(props) {
         })
             .then(function (response) {  
                 const existingData = response.data.error ? null : response.data.data
-                console.log(existingData)
+
                 existingData === null ? setInitialValues({id: props.id ,property_name: "", property_id: "", visibility: "0", property_category:"", property_type: "", address: "", sublocality: "", state: "", latitude:"",longitude: "", beds:"", bath:"", area:"", feature_image: ""}) :
 
                 setInitialValues({id: props.id ,property_name: existingData.name, property_id: existingData.propertyId, visibility: existingData.visibility, property_category:existingData.category, property_type: existingData.type, address: existingData.location, sublocality: existingData.sublocality, state: existingData.state, latitude:existingData.latitude, longitude:existingData.longitude , beds:existingData.beds, bath:existingData.baths, area:existingData.carpetArea, feature_image: existingData.featuredImage})
@@ -40,7 +40,7 @@ export default function EditListing(props) {
                 setCategoryList(response.data.data);
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             })
 
         axiosConfig.get('/propertyTypeList')
@@ -48,7 +48,7 @@ export default function EditListing(props) {
                 setPropertyTypes(response.data.data);
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             })
     },[])
     return (
@@ -67,7 +67,7 @@ export default function EditListing(props) {
                                     ...values
                                 }
                                 for (const key in params) {
-                                    console.log(`${key}: ${params[key]}`);
+ 
                                     formData.append(key, params[key]);
                                 }
 
@@ -87,7 +87,7 @@ export default function EditListing(props) {
                                     });
                                 })
                                 .catch(function (error) {
-                                    console.log(error);
+                                    // console.log(error);
                                     setSubmitting(false)
                                 })
                                 
@@ -133,7 +133,7 @@ export default function EditListing(props) {
                                 handleBlur,
                                 handleSubmit,
                             } = props;
-                            console.log(props)
+      
                             return (
                                 <form className={`relative ${isSubmitting ? 'opacity-20' : ''}`} onSubmit={handleSubmit}>
                                     <div className={`grid grid-cols-2 gap-6 gap-x-12 mt-8 `}>

@@ -8,7 +8,6 @@ import * as styles from '../../../css/dashboard/header.module.css'
 export default function Header() {
     const [userDetails, setuserDetails] = useState(null)
     const {user, setUser} = useContext(AuthContext)
-    console.log(user)
     // useEffect(()=>{
     //     // setuserDetails(user.vendor)
     // },[])

@@ -36,7 +36,7 @@ export default function Listings() {
             setpropertyListings(response.data.data)
         })
         .catch(error => {
-            console.log(error)
+      
             setIsLoading(false)
             setpropertyListings(null)
         })

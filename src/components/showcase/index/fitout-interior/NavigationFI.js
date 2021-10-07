@@ -8,15 +8,17 @@ export default function NavigationFI({slug}) {
         if(fitoutMenuStatus !== null){
             if(fitoutMenuStatus.layout === 0 && fitoutMenuStatus.render === 0 && fitoutMenuStatus.tour === 0){
                 return
-            }else if(fitoutMenuStatus.layout === 0 && fitoutMenuStatus.render === 0){
+            }
+            else if(fitoutMenuStatus.layout === 0 && fitoutMenuStatus.render === 0){
                 navigate(`${slug}/fitout-interior/3d-tour`)
             }
-            else if(fitoutMenuStatus.layout === 0 ){
+
+            else if(fitoutMenuStatus.layout === 0 && fitoutMenuStatus.tour === 0){
                 navigate(`${slug}/fitout-interior/3d-renders`)
             }
         }
     },[fitoutMenuStatus])
-    console.log(fitoutMenuStatus)
+
     return fitoutMenuStatus === null ? "" : (
         <div className={`relative w-full bg-white absolute top-0 py-1 lg:py-1 z-10 flex items-center mx-auto capitalize justify-center gap-2 whitespace-nowrap lg:whitespace-normal overflow-y-hidden overflow-x-auto`}>
             <Link 

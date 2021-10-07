@@ -19,7 +19,6 @@ export default function Tour3DView({slug, fullView}) {
         })
         .then(function (response) {  
             setLoading(false)
-            console.log(response.data.data)
             response.data.error ? setToursData(null) : setToursData(response.data.data)
         })
         .catch(function (error) {

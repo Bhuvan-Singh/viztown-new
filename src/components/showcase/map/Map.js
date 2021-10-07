@@ -5,7 +5,7 @@ import { ListingContext } from '../../../contexts/ListingContextProvider';
 
 export default function Map({propId = null,details = null}) {
     const {listings} = useContext(ListingContext)
-    const zoom = propId === null ? 12 : 20;
+    const zoom = propId === null ? 12 : 17;
     const center = details === null ? listings[0].coordinates : details.coordinates
     const mapContainerStyle = {
         width: '100%',

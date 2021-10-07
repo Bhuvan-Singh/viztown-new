@@ -4,7 +4,7 @@ import Select from 'react-select'
 
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
-export default function Location({updateLocations,location}) {
+export default function Location({updateLocations,location, updateListings}) {
     const options = [
         { value: 'dwarka', label: 'Dwarka' },
         { value: 'sewakpark', label: 'Sewak Park' },
@@ -16,7 +16,7 @@ export default function Location({updateLocations,location}) {
         { value: 'janakpuri', label: 'Janakpuri' },
     ]
     const [locationList, setLocationList] = useState(options)
-    const filterState =  useContext(FilterStateContext);
+    const {filterState,updateData} =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     useEffect(()=>{
         axiosConfig.get('/propertyLocationList')
@@ -24,7 +24,7 @@ export default function Location({updateLocations,location}) {
             setLocationList(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
+
         })
     },[])
 

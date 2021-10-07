@@ -15,6 +15,15 @@ module.exports = {
         plugins: [`gatsby-remark-responsive-iframe`],
       },
     },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "viztown-new",
+        // protocol: "http",
+        // hostname: "d9j6gbeskclhl.cloudfront.net",
+      },
+    },
+    "gatsby-plugin-layout"
   ],
   pathPrefix: `/stagingsetup`,
 

@@ -1,39 +1,6 @@
-import React, {useContext} from 'react'
-import axiosConfig from '../../../axiosConfig';
-import {ListingContext} from '../../../contexts/ListingContextProvider'
-import {FilterStateContext} from '../../../contexts/FilterContextProvider'
-import {navigate} from 'gatsby'
+import React from 'react'
 
-
-export default function FilterButton() {
-    const filterState =  useContext(FilterStateContext);
-    const {setListings, setListingLoading} = useContext(ListingContext)
-    const updateListings = () => {
-        setListingLoading(true);
-        let location = [];
-        filterState.location.map((loc)=>{
-            location.push(loc.value)
-        })
-        axiosConfig.get('/filteredListings',{
-            params: {
-                category: filterState.category,
-                budget: filterState.budget,
-                type: filterState.type,
-                location: location
-            }
-        })
-        .then(function (response) {
-            setListings(response.data.data);
-            setListingLoading(false);
-            // navigate('/showcase/')
-            navigate("/showcase/" + response.data.data[0].slug)
-            
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        localStorage.setItem("filter", JSON.stringify(filterState));
-    }
+export default function FilterButton({updateListings}) {
     return (
         <div className="vt-search-button lg:pl-4 cursor-pointer" onClick={updateListings}>
             <div className="bg-secondary lg:px-8 rounded-md py-3 font-bold leading-none hover:text-white flex items-center justify-center">

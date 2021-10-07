@@ -23,12 +23,12 @@ export default function Index() {
             }
         })
         .then(function(response){
-            console.log(response)
+
             setIsLoading(false)
             setpropertyListings(response.data.data)
         })
         .catch(error => {
-            console.log(error)
+     
             setIsLoading(false)
             setpropertyListings(null)
         })

@@ -5,7 +5,6 @@ import Hero from "../components/common/Hero";
 import ContactForm from "../components/common/ContactForm";
 
 export default function Contact(props) {
-  console.log(props)
   const data = props.data.allContactData.nodes[0];
   return (
     <Layout>

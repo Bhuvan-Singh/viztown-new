@@ -7,8 +7,8 @@ export default function Budget() {
 
     const STEP = 5000;
     const [MIN,setMIN] = useState(0);
-    const [MAX,setMax] = useState(7000000);
-    const filterState =  useContext(FilterStateContext);
+    const [MAX,setMax] = useState(1);
+    const {filterState} =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const handleChange = (values) => {
         dispatch({type: 'BUDGET', payload: values}) 
@@ -25,11 +25,10 @@ export default function Budget() {
             setMax(parseInt(response.data.data.maxValue))
         })
         .catch(function (error) {
-            console.log(error);
         })
     },[])
     return (
-        <div className="lg:w-48 relative">
+        <div className={`lg:w-48 relative ${filterState.budget[1] === 0 ? "opacity-50 pointer-events-none	" : "" }`}>
             <div className="vt-search-budget flex items-center justify-between lg:px-4 py-4 cursor-pointer relative" onClick={toggleBudgetDropdown}>
                 <span className="vt-search-title text-xs text-secondary absolute top-0 font-semibold" style={{fontSize:'10px'}}>₹ Budget</span>
                 <output className="flex justify-between items-center space-x-2 text-xs text-primary no-wrap" style={{ marginTop: '0px', fontWeight:'400'}} id="output">

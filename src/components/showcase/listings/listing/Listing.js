@@ -10,13 +10,13 @@ import Configuration from './Configuration'
 
 import * as styles from '../../../../css/listing.module.css'
 
-export default function Listing({property}) {
+export default function Listing({property,}) {
     return (
-        <li className="vt-listing rounded-md shadow-md border border-grey bg-white relative cursor-pointer">
+        <li  className="vt-listing rounded-md shadow-md border border-grey bg-white relative cursor-pointer">
             <Link 
             className="" 
             to={`/showcase/${property.slug}`} 
-            activeClassName={styles.active}
+            activeClassName={`${styles.active} active--listing`}
             partiallyActive={true}
             >
                 {/* <OwnerImg ownerImg={property.ownerImg}/> */}

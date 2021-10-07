@@ -17,7 +17,7 @@ export default function ListingContextProvider({children}) {
             setListingLoading(false)
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
     },[])
     return (

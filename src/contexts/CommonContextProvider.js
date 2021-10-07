@@ -8,19 +8,19 @@ export default function CommonContextProvider({children}) {
     const [ownerDetails, setOwnerDetails] = useState(false);
     const [fitoutMenuStatus, setFitoutMenuStatus] = useState(null)
     const [activeSlug, setActiveSlug] = useState(null)
-
+    const [fullWidth, setFullWidth] = useState(false)
     useEffect(()=>{
         axiosConfig.get('/menus')
         .then(function (response) {
             setMenus(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
     },[])
     
     return (
-        <CommonContext.Provider value={{menus, isResidential, setIsResidential, ownerDetails, setOwnerDetails, fitoutMenuStatus, setFitoutMenuStatus, activeSlug, setActiveSlug}}>
+        <CommonContext.Provider value={{menus, isResidential, setIsResidential, ownerDetails, setOwnerDetails, fitoutMenuStatus, setFitoutMenuStatus, activeSlug, setActiveSlug, fullWidth, setFullWidth}}>
             {children}
         </CommonContext.Provider>
     )

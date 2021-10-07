@@ -22,7 +22,7 @@ export default function NewListing() {
             setCategoryList(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
 
         axiosConfig.get('/propertyTypeList')
@@ -30,7 +30,7 @@ export default function NewListing() {
             setPropertyTypes(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
     },[])
     return (
@@ -48,7 +48,6 @@ export default function NewListing() {
                                 ...values
                             }
                             for (const key in params) {
-                                console.log(`${key}: ${params[key]}`);
                                 formData.append(key, params[key]);
                             }
 
@@ -57,11 +56,9 @@ export default function NewListing() {
                             })
                             .then(function (response) {
                                 setSubmitting(false)
-                                console.log(response.data)
                                 navigate(`/dashboard/listings/create/${response.data.data.property_id}/info-map`)
                             })
                             .catch(function (error) {
-                                console.log(error);
                                 setSubmitting(false)
                             })
                             
@@ -338,30 +335,30 @@ export default function NewListing() {
                                         )}
                                     </div>
                                 </div>
-                                <div class="flex mt-8">
-                                    <div class="max-w-2xl rounded-lg bg-gray-50">
+                                <div className="flex mt-8">
+                                    <div className="max-w-2xl rounded-lg bg-gray-50">
                                         <img src={featuredImagePreview?.path}/>
-                                        <div class="m-4">
-                                            <label class="inline-block mb-2 text-primary text-sm font-semibold">Add Featured Image
+                                        <div className="m-4">
+                                            <label className="inline-block mb-2 text-primary text-sm font-semibold">Add Featured Image
                                             {errors.feature_image && touched.feature_image && (
                                                 <div className="input-feedback text-red-400 text-xs font-semibold capitalize">{errors.feature_image}</div>
                                             )}
                                             </label>
                                             
-                                            <div class="flex items-center justify-center w-full cursor-pointer">
+                                            <div className="flex items-center justify-center w-full cursor-pointer">
                                                 <label htmlFor="feature_image"
-                                                    class="flex flex-col w-full h-32 border-4 border-secondary border-opacity-40 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                                                    <div class="flex flex-col items-center justify-center pt-7">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary group-hover:text-gray-600"
+                                                    className="flex flex-col w-full h-32 border-4 border-secondary border-opacity-40 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                                    <div className="flex flex-col items-center justify-center pt-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-primary group-hover:text-gray-600"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                         </svg>
-                                                        <p class="pt-1 text-sm tracking-wider text-primary group-hover:text-gray-600">
+                                                        <p className="pt-1 text-sm tracking-wider text-primary group-hover:text-gray-600">
                                                             Attach a file</p>
                                                     </div>
                                                     <input type="file" 
-                                                    class="opacity-0"
+                                                    className="opacity-0"
                                                     id="feature_image"
                                                     name="feature_image"
                                                     // value={values.feature_image}

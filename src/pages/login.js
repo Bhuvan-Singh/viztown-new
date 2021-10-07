@@ -19,7 +19,6 @@ export default function Login() {
     const {user,setUser} = useContext(AuthContext)
     
     useEffect(() => {
-        console.log(user)
         if (user) {
             navigate('/dashboard')
             // return 
@@ -43,7 +42,7 @@ export default function Login() {
                         signInWithEmailAndPassword(auth, values.email, values.password)
                         .then((userCredential) => {
                             const user = userCredential.user;
-                            console.log(user)
+                
                             axiosConfig.get('/getVendorId',{
                                 params: { 
                                     uid: userCredential.user.uid

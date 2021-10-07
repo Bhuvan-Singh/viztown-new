@@ -2,7 +2,6 @@ import React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
 export default function Footer(props) {
-  console.log(process.env.GATSBY_BASE_URL)
   const queryData = useStaticQuery(graphql`
     query footerDataQuery {
       allContactData {
@@ -24,6 +23,7 @@ export default function Footer(props) {
     }
   `);
   const data = queryData.allContactData.nodes[0];
+  console.log("sfddfsf")
   return (
     <footer className="w-full bg-primary pb-16 mt-4 lg:mt-24 relative z-10 text-sm font-light">
       <div className="container xl:max-w-screen-lg mx-auto md:pt-20">
@@ -50,7 +50,7 @@ export default function Footer(props) {
           <div className="md:w-1/2 lg:w-4/12 xl:w-4/12 pr-8">
             <img
               className="w-56"
-              src={`${process.env.GATSBY_BASE_URL}admin/assets/images/logo.png`}
+              src={`${process.env.GATSBY_BASE_URL}assets/images/logo.png`}
               alt="Wiztown Logo"
             />
             <address className="mt-6 space-y-2 text-white">

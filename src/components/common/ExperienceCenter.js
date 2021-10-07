@@ -5,39 +5,39 @@ export default function ExperienceCenter({ data }) {
   return (
     <>
       <div
-        class="xl:max-w-screen-xl mx-auto space-y-3 text-center mt-16 mb-8 lg:mb-4 xl:mt-32"
+        className="xl:max-w-screen-xl mx-auto space-y-3 text-center mt-16 mb-8 lg:mb-4 xl:mt-32"
         id="experience_center"
       >
-        <h1 class="text-4xl  text-primary font-bold font-playfair">
+        <h1 className="text-4xl  text-primary font-bold font-playfair">
           Experience Center
         </h1>
       </div>
-      <div class="w-full relative lg:py-16 xl:py-0 ">
-        <div class="xl:max-w-screen-xl items-center mx-auto relative z-10">
-          <div class="flex flex-col-reverse lg:flex-row lg:flex items-center xl:mt-20">
-            <div class="lg:w-5/12 xl:w-1/2 lg:pr-12 xl:pr-32 py-8 px-4 xl:px-0 xl:py-28 relative ">
-              <div class="relative z-10">
-                <div class="flex">
-                  <div class="bg-primary w-6 h-6 rounded-full p-1 shadow-md">
-                    <span class="block bg-secondary w-4 h-4 rounded-full z-10"></span>
+      <div className="w-full relative lg:py-16 xl:py-0 ">
+        <div className="xl:max-w-screen-xl items-center mx-auto relative z-10">
+          <div className="flex flex-col-reverse lg:flex-row lg:flex items-center xl:mt-20">
+            <div className="lg:w-5/12 xl:w-1/2 lg:pr-12 xl:pr-32 py-8 px-4 xl:px-0 xl:py-28 relative ">
+              <div className="relative z-10">
+                <div className="flex">
+                  <div className="bg-primary w-6 h-6 rounded-full p-1 shadow-md">
+                    <span className="block bg-secondary w-4 h-4 rounded-full z-10"></span>
                   </div>
-                  <h4 class="text-primary text-lg uppercase font-semibold ml-2">
+                  <h4 className="text-primary text-lg uppercase font-semibold ml-2">
                     {data.first.heading}
                   </h4>
                 </div>
-                <p class="text-primary text-md max-w-2xl mt-6">
+                <p className="text-primary text-md max-w-2xl mt-6">
                   {data.first.description}
                 </p>
               </div>
             </div>
-            <div class="lg:w-1/2 relative">
+            <div className="lg:w-1/2 relative">
               <img
-                class="lazy h-92 w-full object-cover"
+                className="lazy h-92 w-full object-cover"
                 alt=""
                 src={data.first.url}
               />
               <img
-                class="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden lg:block"
+                className="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden lg:block"
                 alt=""
                 src="https://www.viztown.in/assets/images/right-camera.png"
               />

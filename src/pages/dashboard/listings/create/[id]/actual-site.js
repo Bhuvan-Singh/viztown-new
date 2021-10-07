@@ -26,7 +26,7 @@ export default function ActualSiteData(props) {
             setAsType(response.data.data[1].id)
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
 
         axiosConfig.get('/propertyActualSiteDataClient',{
@@ -35,7 +35,6 @@ export default function ActualSiteData(props) {
             }
         })
         .then(function (response) { 
-            console.log(response)
             let exisitingImageArray = [];
             if(response.data.data[1].images.length > 0){
                 response.data.data[1].images.map(image => {
@@ -84,7 +83,6 @@ export default function ActualSiteData(props) {
                                 ...values
                             }
                             for (const key in params) {
-                                console.log(`${key}: ${params[key]}`);
                                 formData.append(key, params[key]);
                                 if(key === 'photos'){
                                     const files = params[key]
@@ -102,7 +100,7 @@ export default function ActualSiteData(props) {
                             })
                             .then(function (response) {
                                 setSubmitting(false)
-                                console.log(response.data)
+        
                                 toast.success('Updated Successfully', {
                                     position: "top-right",
                                     autoClose: 2000,
@@ -114,7 +112,7 @@ export default function ActualSiteData(props) {
                                 });
                             })
                             .catch(function (error) {
-                                console.log(error);
+                                // console.log(error);
                                 setSubmitting(false)
                             })
                             
@@ -162,7 +160,7 @@ export default function ActualSiteData(props) {
                                             onChange={(event) =>{
                                                 setFieldValue("type", event.currentTarget.value);
                                                 setAsType(event.currentTarget.value)
-                                                console.log(event.currentTarget.value)
+       
                                             }}
                                             onBlur={handleBlur}
                                             className={`outline-none border border-gray-300 px-4 h-11 bg-white text-xs font-semibold rounded-md ${errors.type && touched.type && "error"}`}

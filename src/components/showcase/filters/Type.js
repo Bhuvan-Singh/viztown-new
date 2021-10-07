@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react'
 import axiosConfig from '../../../axiosConfig';
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
-export default function Type() {
+export default function Type({updateListings}) {
     const options = [
         {
             id: 1,
@@ -19,7 +19,7 @@ export default function Type() {
             console.log(error);
         })
     },[])
-    const filterState =  useContext(FilterStateContext);
+    const {filterState} =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const toggleTypeDropdown = () => {
         const t = document.getElementById('vt-search-relative-type').classList.toggle('hidden');

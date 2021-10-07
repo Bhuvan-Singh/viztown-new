@@ -24,7 +24,6 @@ function SelectInput({ label,defaultValue, ...props }) {
         values.map(value => {
             selectedFeatures.push(value.value)
         })
-        console.log(values)
         setValue(selectedFeatures);
     };
   
@@ -79,7 +78,7 @@ export default function InfoMapData(props) {
             setPropertyFeatures(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
     },[])
 
@@ -92,7 +91,6 @@ export default function InfoMapData(props) {
                     <Formik
                         initialValues={initialValues}
                         onSubmit={(values, { setSubmitting }) => {
-                            console.log(values);
                             let formData = new FormData();
                             const params = {
                                 property_id: props.params.id,
@@ -416,29 +414,29 @@ export default function InfoMapData(props) {
                                         
                                 </div>
 
-                                <div class="flex mt-6">
-                                    <div class="max-w-2xl rounded-lg bg-grey">
-                                        <div class="m-4">
-                                            <label class="inline-block mb-2 text-primary text-sm font-semibold">Add banner Image
+                                <div className="flex mt-6">
+                                    <div className="max-w-2xl rounded-lg bg-grey">
+                                        <div className="m-4">
+                                            <label className="inline-block mb-2 text-primary text-sm font-semibold">Add banner Image
                                             {errors.banner && touched.banner && (
                                                 <div className="input-feedback text-red-400 text-xs font-semibold capitalize">{errors.banner}</div>
                                             )}
                                             </label>
                                             
-                                            <div class="flex items-center justify-center w-full cursor-pointer">
+                                            <div className="flex items-center justify-center w-full cursor-pointer">
                                                 <label htmlFor="banner"
-                                                    class="flex flex-col w-full h-32 border-4 border-secondary border-opacity-40 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                                                    <div class="flex flex-col items-center justify-center pt-7">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary group-hover:text-gray-600"
+                                                    className="flex flex-col w-full h-32 border-4 border-secondary border-opacity-40 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                                    <div className="flex flex-col items-center justify-center pt-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-primary group-hover:text-gray-600"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                         </svg>
-                                                        <p class="pt-1 text-sm tracking-wider text-primary group-hover:text-gray-600">
+                                                        <p className="pt-1 text-sm tracking-wider text-primary group-hover:text-gray-600">
                                                             Attach a file</p>
                                                     </div>
                                                     <input type="file" 
-                                                    class="opacity-0"
+                                                    className="opacity-0"
                                                     id="banner"
                                                     name="banner[]"
                                                     // value={values.banner_image}

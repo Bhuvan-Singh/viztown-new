@@ -26,7 +26,7 @@ export default function TourData(props) {
             setAsType(response.data.data[0].id)
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
 
         axiosConfig.get('/property3dRenderClient',{
@@ -92,8 +92,6 @@ export default function TourData(props) {
             }
             setInitialValues({id: props.params.id, type: typeId, photos:exisitingImageArray})
             response.data.error ? setRenderData(null) : setRenderData(response.data.data)
-            console.log(exisitingImageArray)
-            console.log(initialValues)
         })
         .catch(function (error) {
             setRenderData(null);

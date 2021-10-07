@@ -62,7 +62,7 @@ const Calculator = () => {
                 'Authorization': process.env.AUTHORIZATION_KEY
             }})
             .then(res => res.json())
-            .then(res => {console.log(res);setCalculatorGroups(res.data); loadUnitTypes();});
+            .then(res => {setCalculatorGroups(res.data); loadUnitTypes();});
 
         // await axiosConfig.get("/GetCalculatorDetails")
         //     .the(result => {setCalculatorGroups(res); loadUnitTypes()})
@@ -80,7 +80,7 @@ const Calculator = () => {
             }})
             .then(res => res.json())
             .then(res => {
-                console.log(res);
+
                 SetCirculationFactor(res.data.circulation); 
                 setUnitType(res.data.unitType);
                 

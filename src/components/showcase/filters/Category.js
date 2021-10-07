@@ -3,10 +3,11 @@ import axiosConfig from '../../../axiosConfig';
 import Select from 'react-select'
 import {FilterStateContext, FilterDispatchContext} from '../../../contexts/FilterContextProvider'
 
-export default function Category() {
+
+export default function Category({updateListings}) {
     
     const options = [
-        { value: 1, label: 'Select' },
+        // { value: 1, label: 'Category' },
     ]
     const [categoryList, setCategoryList] = useState(options)
     const [defaultCategoryIndex, setDefaultCategoryIndex] = useState(1)
@@ -17,11 +18,10 @@ export default function Category() {
             setCategoryList(response.data.data);
         })
         .catch(function (error) {
-            console.log(error);
         })
     },[])
 
-    const filterState =  useContext(FilterStateContext);
+    const {filterState} =  useContext(FilterStateContext);
     const dispatch = useContext(FilterDispatchContext)
     const customStyles = {
         control: (provided, state) => ({

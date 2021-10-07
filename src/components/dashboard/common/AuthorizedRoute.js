@@ -5,7 +5,6 @@ import {AuthContext} from '../../../contexts/AuthContextProvider'
 
 export default function AuthorizedRoute({children, propertyId}) {
     const {user} = useContext(AuthContext)
-    console.log("user:" + user)
     const [isAuthorizedProperty, setIsAuthorizedProperty] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     useEffect(()=>{
@@ -21,7 +20,6 @@ export default function AuthorizedRoute({children, propertyId}) {
         })
         .catch(function (error) {
             setIsLoading(false)
-            console.log(error);
         })
     },[])
     return isLoading ? 

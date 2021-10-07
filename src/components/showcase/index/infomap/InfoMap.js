@@ -55,13 +55,13 @@ export default function InfoMap({slug}) {
             <div className="px-4 lg:px-8 bg-white pb-8">
                 <div className="2xl:max-w-screen-xl mx-auto grid grid-cols-1 gap-4 pt-8 pb-8 px-4 xl:px-0 text-xs">
                     <div className="">
-                        <div className="py-3 border-b border-gray-200 border-opacity-80">
+                        {/* <div className="py-3 border-b border-gray-200 border-opacity-80">
                             <h6>Property ID : <strong>{infoMapData.propertyId}</strong></h6>
-                        </div>
+                        </div> */}
                         <div className="py-8">
                             <h2 className="capitalize text-2xl text-primary mb-3 font-bold vt-serif-font">description</h2>
                             <div className="text-light text-primary 2xl:text-sm">
-                                <Markup className="grid gap-4" content={infoMapData.propertyDescription}/>
+                                <Markup id="info-map" className="grid gap-4 info-map-description" content={infoMapData.propertyDescription}/>
                                 {/* {infoMapData.propertyDescription} */}
                             </div>
                         </div>
@@ -70,7 +70,7 @@ export default function InfoMap({slug}) {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
                         <div className="flex items-center gap-4 text-primary">
                             <div>
-                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/calendar.svg`} alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}assets/images/calendar.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Year of Build</h6>
@@ -79,7 +79,7 @@ export default function InfoMap({slug}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/area.svg`} alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}assets/images/area.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Build Up Area</h6>
@@ -88,7 +88,7 @@ export default function InfoMap({slug}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary">
                             <div>
-                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/selection.svg`} alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}assets/images/selection.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Carpet Area</h6>
@@ -97,7 +97,7 @@ export default function InfoMap({slug}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/building.svg`} alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}assets/images/building.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Property Type</h6>
@@ -106,7 +106,7 @@ export default function InfoMap({slug}) {
                         </div>
                         <div className="flex items-center gap-4 text-primary ">
                             <div>
-                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}admin/assets/images/story.svg`} alt=""/>
+                                <img className="w-8 h-8" src={`${process.env.GATSBY_BASE_URL}assets/images/story.svg`} alt=""/>
                             </div>
                             <div>
                                 <h6>Booking Type</h6>

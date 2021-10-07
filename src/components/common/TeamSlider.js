@@ -6,9 +6,9 @@ import "slick-carousel/slick/slick-theme.css";
 function CustomNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <button class="slick-next custom slick-arrow" onClick={onClick}>
+    <button className="slick-next custom slick-arrow" onClick={onClick}>
       <svg
-        class="w-10 inline text-white"
+        className="w-10 inline text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -99,14 +99,14 @@ export default function TeamSlider({ team }) {
           {...settings}
         >
           {team.map((member) => (
-            <div class="relative">
+            <div className="relative">
               <img
-                class="lazy w-full h-80 object-top object-contain"
+                className="lazy w-full h-80 object-top object-contain"
                 src={member.img}
                 alt={member.name}
               />
-              <div class="bg-secondary w-9/12 mx-auto text-center py-4 -mt-11 z-10 relative">
-                <h4 class="font-semibold text-md">{member.name}</h4>
+              <div className="bg-secondary w-9/12 mx-auto text-center py-4 -mt-11 z-10 relative">
+                <h4 className="font-semibold text-md">{member.name}</h4>
                 <p>
                   {member.designation} - <b>{member.location}</b>
                 </p>

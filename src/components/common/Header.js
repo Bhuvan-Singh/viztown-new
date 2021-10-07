@@ -66,25 +66,25 @@ export default function Header() {
           </nav>
         </div>
 
-        <div class="w-full top-0 inset-x-0 transition transform origin-top-right lg:hidden py-3">
-          <div class="flex items-center justify-between w-full lg:w-auto  px-4">
+        <div className="w-full top-0 inset-x-0 transition transform origin-top-right lg:hidden py-3">
+          <div className="flex items-center justify-between w-full lg:w-auto  px-4">
             <a href="https://www.viztown.in/">
               <img
                 src="https://www.viztown.in/assets/images/logo.png"
-                class="w-48"
+                className="w-48"
                 alt="Wiztown Logo"
               />
             </a>
 
-            <div class="flex items-center lg:hidden">
+            <div className="flex items-center lg:hidden">
               <button
                 type="button"
-                class="bg-white rounded-sm p-2 inline-flex items-center justify-center text-primary hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                className="bg-white rounded-sm p-2 inline-flex items-center justify-center text-primary hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                 id="open--mobile--menu"
               >
-                <span class="sr-only">Open main menu</span>
+                <span className="sr-only">Open main menu</span>
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   x-description="Heroicon name: outline/menu"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -106,29 +106,29 @@ export default function Header() {
       </header>
       <div
         id="mobile--menu"
-        class="shadow-md bg-primary ring-1 ring-black ring-opacity-5 overflow-hidden w-full h-screen hidden fixed z-50 top-0"
+        className="shadow-md bg-primary ring-1 ring-black ring-opacity-5 overflow-hidden w-full h-screen hidden fixed z-50 top-0"
         style="display: none;"
       >
-        <div class="px-4 pt-4 flex items-center justify-between">
+        <div className="px-4 pt-4 flex items-center justify-between">
           <div>
             <a href="https://www.viztown.in/">
               <img
                 src="https://www.viztown.in/assets/images/logo.png"
-                class="w-48"
+                className="w-48"
                 alt="Wizwalk Logo"
               />
             </a>
           </div>
-          <div class="-mr-2">
+          <div className="-mr-2">
             <button
               type="button"
-              class="bg-white rounded-sm p-2 inline-flex items-center justify-center text-primary hover:text-secondary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="bg-white rounded-sm p-2 inline-flex items-center justify-center text-primary hover:text-secondary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               id="close--mobile--menu"
             >
-              <span class="sr-only">Close main menu</span>
+              <span className="sr-only">Close main menu</span>
 
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -136,16 +136,16 @@ export default function Header() {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 ></path>
               </svg>
             </button>
           </div>
         </div>
-        <div class="px-7 pt-12 pb-3 space-y-1 flex flex-col space-y-6 font-bold text-white">
+        <div className="px-7 pt-12 pb-3 space-y-1 flex flex-col space-y-6 font-bold text-white">
           <a href="https://www.viztown.in/about">About</a>
           <a href="https://www.viztown.in/residential">Residential</a>
           <a href="https://www.viztown.in/commercial">Commercial</a>
@@ -155,7 +155,7 @@ export default function Header() {
           <a
             href=""
             id="login-link"
-            class="login-link bg-secondary px-5 rounded-sm py-3 font-bold leading-none hover:text-white"
+            className="login-link bg-secondary px-5 rounded-sm py-3 font-bold leading-none hover:text-white"
           >
             Sign In
           </a>

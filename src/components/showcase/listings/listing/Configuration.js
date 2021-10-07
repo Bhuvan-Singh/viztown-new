@@ -13,7 +13,7 @@ export default function Configuration({configuration}) {
                     {configuration.bath} Bath
                 </span> */}
                 <span className="flex items-center">
-                    <img src={`${process.env.GATSBY_BASE_URL}admin/assets/images/floor-plan.png`} className="h-3 w-3 mr-1" alt=""/>
+                    <img src={`${process.env.GATSBY_BASE_URL}assets/images/floor-plan.png`} className="h-3 w-3 mr-1" alt=""/>
                     {configuration.area} SF
                 </span>
             </div>

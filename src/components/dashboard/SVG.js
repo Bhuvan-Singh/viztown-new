@@ -24,7 +24,7 @@ export default function SVG() {
                 var zoom = d3.zoom().on('zoom', handleZoom);
 
                 function handleZoom(e) {
-                    console.log(e.transform)
+
                     d3.select('#svg-container > svg')
                         // .attr('transform', e.transform);
                         .attr('viewBox', `0 0 ${Math.abs(e.transform.x *  e.transform.k) } ${Math.abs(e.transform.y *  e.transform.k)}` )
@@ -66,9 +66,7 @@ export default function SVG() {
                 }
 
                 function alert_click(evt) {
-                    console.log(roomName )
                     var cursorpt = cursorPoint(evt);
-                    console.log("(" + cursorpt.x + ", " + cursorpt.y + ")");
                     xPos = cursorpt.x;
                     yPos = cursorpt.y;
                     moveSection("svg-marker", xPos, yPos);
@@ -133,8 +131,7 @@ export default function SVG() {
     // svgDoc.addEventListener("mousedown", alert_click, false);
     const handleClick = (name) => {
         
-       
-        console.log(roomName )
+    
         
 
         

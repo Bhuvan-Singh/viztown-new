@@ -98,7 +98,7 @@ export default function ActualSiteView({fullView, slug}) {
                                 <ImageGallery items={site.images} slideOnThumbnailOver={true} infinite={true}/>
                             </div>:
                             
-                            <iframe class="w-full h-full" allowfullscreen="" height="100%" width="100%" src={site.iframe}></iframe>
+                            <iframe className="w-full h-full" allowFullScreen="" height="100%" width="100%" src={site.iframe}></iframe>
                             }
                         </TabPanel>
                     ))}

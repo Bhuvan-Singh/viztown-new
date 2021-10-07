@@ -39,12 +39,12 @@ export default function InstaSlider({images}) {
 		],
     }
     return (
-        <div class="w-full md:h-72 lg:h-auto">
+        <div className="w-full md:h-72 lg:h-auto">
             {typeof window !== "undefined" && (
-            <Slider class="insta--slider" {...settings}>
+            <Slider className="insta--slider" {...settings}>
                 {images.map((image,i) => (
-                    <div class="item" key="i">
-                        <img class="lazy w-full h-56 lg:h-72" src={image.image}/>
+                    <div className="item" key="i">
+                        <img className="lazy w-full h-56 lg:h-72" src={image.image}/>
                     </div>
                 ))}
                 

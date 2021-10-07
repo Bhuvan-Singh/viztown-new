@@ -26,7 +26,7 @@ export default function RenderData(props) {
             setAsType(response.data.data[0].id)
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         })
 
         axiosConfig.get('/property3dRenderClient',{
@@ -90,8 +90,6 @@ export default function RenderData(props) {
             }
             setInitialValues({id: props.params.id, type: typeId, photos:exisitingImageArray})
             response.data.error ? setRenderData(null) : setRenderData(response.data.data)
-            console.log(exisitingImageArray)
-            console.log(initialValues)
         })
         .catch(function (error) {
             setRenderData(null);
@@ -109,7 +107,6 @@ export default function RenderData(props) {
                         initialValues={initialValues}
 
                         onSubmit={(values, { setSubmitting }) => {
-                            console.log(values)
                             setLoading(true)
                             let formData = new FormData();
                             const params = {
@@ -119,7 +116,6 @@ export default function RenderData(props) {
                                 ...values
                             }
                             for (const key in params) {
-                                console.log(`${key}: ${params[key]}`);
                                 formData.append(key, params[key]);
                                 if(key === 'photos'){
                                     const files = params[key]
@@ -136,7 +132,6 @@ export default function RenderData(props) {
                             })
                             .then(function (response) {
                                 setSubmitting(false)
-                                console.log(response.data)
                                 toast.success('Updated Successfully', {
                                     position: "top-right",
                                     autoClose: 2000,
@@ -148,7 +143,7 @@ export default function RenderData(props) {
                                 });
                             })
                             .catch(function (error) {
-                                console.log(error);
+                                // console.log(error);
                                 setSubmitting(false)
                             })
                             

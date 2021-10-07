@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import useIntersection from "../useIntersection";
 
 export default function AnimatedSection({ data }) {
-  console.log(data);
   const ref__module__1 = useRef();
   const ref__module__2 = useRef();
   const ref__module__3 = useRef();

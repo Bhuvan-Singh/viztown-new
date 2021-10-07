@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import Transition from './Transition'
 import "../css/index.css"
 import axiosConfig from '../axiosConfig';
 

@@ -6,8 +6,6 @@ import { ListingContext } from '../../contexts/ListingContextProvider';
 export default function Showcase() {
     const {listings} = useContext(ListingContext)
     
-    console.log("listings")
-    console.log(listings)
     return (
         <div className="vt-showcase mx-auto relative z-10">
             {listings.length > 0 ? 

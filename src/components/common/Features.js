@@ -75,22 +75,22 @@ export default function Features({firstSection, secondSection, thirdSection, fou
       </div>
 
 
-      <div class="w-full relative px-4 py-16 xl:px-0 lg:py-24 bg-white">
-        <div class="xl:max-w-screen-xl mx-auto space-x-10">
-          <div class="lg:w-5/12 xl:w-1/2 lg:pt-4 xl:pt-28 xl:pb-24 lg:pr-16">
-            <h2 class="text-3xl lg:text-4xl  text-primary font-bold font-playfair">
+      <div className="w-full relative px-4 py-16 xl:px-0 lg:py-24 bg-white">
+        <div className="xl:max-w-screen-xl mx-auto space-x-10">
+          <div className="lg:w-5/12 xl:w-1/2 lg:pt-4 xl:pt-28 xl:pb-24 lg:pr-16">
+            <h2 className="text-3xl lg:text-4xl  text-primary font-bold font-playfair">
             {fourthSection.heading}
             </h2>
-            <div class="mt-4 mb-4 text-primary text-md max-w-2xl mt-6 mb-8 text-primary">
+            <div className="mt-4 mb-4 text-primary text-md max-w-2xl mt-6 mb-8 text-primary">
               <Markup content={fourthSection.description}/>
             </div>
           </div>
         </div>
-        <div class="w-full lg:absolute z-10 right-0 mt-12 lg:mt-0 lg:top-24">
-          <div class="lg:w-8/12 xl:w-1/2 xl:max-w-screen-lg  lg:pl-16 ml-auto mr-2 ">
-            <div class="device--tab lg:border-2 border-gray-300">
+        <div className="w-full lg:absolute z-10 right-0 mt-12 lg:mt-0 lg:top-24">
+          <div className="lg:w-8/12 xl:w-1/2 xl:max-w-screen-lg  lg:pl-16 ml-auto mr-2 ">
+            <div className="device--tab lg:border-2 border-gray-300">
               <video
-                class="lazy w-full outline-none bg-black object-contain xl:h-420"
+                className="lazy w-full outline-none bg-black object-contain xl:h-420"
                 controls={true}
                 autoplay={true}
                 muted=""

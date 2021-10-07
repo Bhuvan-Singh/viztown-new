@@ -22,7 +22,6 @@ export default function FitoutInteriorView({slug, fullView}) {
         .then(function (response) {  
             setLoading(false)
             response.data.error ? setFloorLayoutsData(null) : setFloorLayoutsData(response.data.data)
-            console.log(response.data);
         })
         .catch(function (error) {
             setLoading(false)

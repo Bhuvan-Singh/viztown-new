@@ -165,6 +165,21 @@ button.image-gallery-icon.image-gallery-fullscreen-button:hover {
 .react-transform-wrapper {
   width: 100% !important;
 }
+.fullscreen.image-gallery-content .image-gallery-slide .image-gallery-image {
+  max-height: calc(100vh - 180px);
+  object-fit: contain;
+}
+.fullscreen.fullscreen-enabled img.pinchzoom {
+  height: calc(100vh - 180px) !important;
+  object-fit: contain;
+}
+
+.vt-listings-wrap.loading h3, .vt-listings-wrap.loading p {
+  color: #fff !important;
+}
+.vt-listings-wrap{
+  scroll-behavior: smooth;
+}
 .vt-listings-wrap.loading .vt-listing-image:after {
   background: #eee;
   content: "";
@@ -184,7 +199,9 @@ button.image-gallery-icon.image-gallery-fullscreen-button:hover {
   z-index: 9;
   position: absolute;
 }
-
+.vt-listing a{
+  scroll-margin: 20px;
+}
 .vt-listings-wrap.loading .vt-listing-location:after {
   background: #eee;
   content: "";
@@ -1098,3 +1115,12 @@ span.arrow-left {
   bottom: 50%;
   margin-bottom: -17px;
 }
+
+
+p, span, li {
+  font-family: 'Poppins' !important;
+}
+.info-map-description p, .info-map-description span, .info-map-description li {
+  font-size: 14px !important;
+}
+
