@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -60,12 +61,21 @@ export default function TestimonialSlider() {
           name
           review
           designation
+          localimage {
+            url {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                )
+              }
+            }
+          }
         }
       }
     }
   `);
   const testimonials = queryData.allTestimonialData.nodes;
-
+  console.log(testimonials);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
 
@@ -80,7 +90,7 @@ export default function TestimonialSlider() {
   var settingsForImageSlider = {
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 1500,
     autoplaySpeed: 8000,
     pauseOnHover: true,
@@ -92,7 +102,7 @@ export default function TestimonialSlider() {
   var settingsForSlider = {
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 1500,
     autoplaySpeed: 8000,
     pauseOnHover: true,
@@ -101,10 +111,6 @@ export default function TestimonialSlider() {
     asNavFor: nav1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    // prevArrow:
-    //   '<button className="slick-prev"> <svg xmlns="http://www.w3.org/2000/svg" className="w-10 inline text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" /></svg> </button>',
-    // nextArrow:
-    //   '<button className="slick-next"><svg className="w-10 inline text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg> </button>',
   };
 
   return (
@@ -118,10 +124,10 @@ export default function TestimonialSlider() {
               ref={(slider) => (slider1 = slider)}
             >
               {testimonials.map((testimonial) => (
-                <img
-                  className="lazy h-96 object-cover md:h-600 w-full"
-                  src={testimonial.image}
+                <GatsbyImage
+                  image={getImage(testimonial.localimage.url)}
                   alt={testimonial.name}
+                  className="h-96 md:h-600"
                 />
               ))}
             </Slider>

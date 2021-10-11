@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, graphql } from "gatsby";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import { Markup } from "interweave";
 import Layout from "../components/Layout";
 import Hero from "../components/common/Hero";
@@ -10,10 +11,9 @@ export default function About(props) {
   return (
     <Layout>
       <Hero
-        heading="About Us"
-        imageUrl="https://www.viztown.in/upload/banner/2722b00358caaff433d2b46463a8ca24.jpg"
+        heading={data.banner.heading}
+        imageUrl={data.banner.imageFile}
       />
-
       <div className="relative my-16 lg:my-0 xl:my-16 lg:py-24 z-10  lg:mb-0">
         <div className="xl:max-w-screen-xl md:flex mx-auto px-4 xl:px-0 items-center">
           <Markup
@@ -23,22 +23,22 @@ export default function About(props) {
 
           <div className="md:w-1/2 md:flex mt-8 md:mt-0">
             <div className="md:w-1/2 space-y-4">
-              <img
-                className="lazy h-56 mx-auto shadow-md w-full md:w-11/12 object-cover"
+              <GatsbyImage
+                className="h-56 mx-auto shadow-md w-full md:w-11/12 object-cover"
                 alt=""
-                src={data.aboutDetails.image1}
+                image={getImage(data.aboutDetails.imageFile1)}
               />
-              <img
+              <GatsbyImage
                 className="lazy h-56 mx-auto shadow-xl w-full md:w-11/12 object-cove"
                 alt=""
-                src={data.aboutDetails.image2}
+                image={getImage(data.aboutDetails.imageFile2)}
               />
             </div>
             <div className="md:w-1/2">
-              <img
+              <GatsbyImage
                 className="lazy object-left w-full md:w-auto mt-4 md:mt-0 shadow-lg "
                 alt=""
-                src={data.aboutDetails.image3}
+                image={getImage(data.aboutDetails.imageFile3)}
               />
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function About(props) {
                     <img
                       className="lazy w-2 h-2 mr-2"
                       alt=""
-                      src="https://www.viztown.in/assets/images/Group 47.svg"
+                      src="https://admin.viztown.in/assets/images/Group 47.svg"
                     />
                     <h6 className="text font-semibold text-primary">
                       {item.heading}
@@ -82,7 +82,7 @@ export default function About(props) {
                     <img
                       className="lazy w-2 h-2 mr-2"
                       alt=""
-                      src="https://www.viztown.in/assets/images/Group 47.svg"
+                      src="https://admin.viztown.in/assets/images/Group 47.svg"
                     />
                     <h6 className="text font-semibold text-primary">
                       {item.heading}
@@ -129,13 +129,40 @@ export const query = graphql`
         data {
           aboutDetails {
             description
-            image1
-            image2
-            image3
+            imageFile1 {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: {fit: COVER, cropFocus: CENTER}
+                  layout: FULL_WIDTH
+                )
+              }
+            }
+            imageFile2 {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: {fit: COVER, cropFocus: CENTER}
+                  layout: FULL_WIDTH
+                )
+              }
+            }
+            imageFile3 {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: {fit: COVER, cropFocus: CENTER}
+                  layout: FULL_WIDTH
+                )
+              }
+            }
           }
           banner {
             heading
-            image
+            imageFile {
+              childImageSharp {
+                fluid(quality: 90, maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           clients {
             feature {
@@ -147,9 +174,15 @@ export const query = graphql`
             heading
             teamlist {
               designation
-              img
-              name
               location
+              name
+              imageFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    transformOptions: {fit: CONTAIN, cropFocus: CENTER}
+                  )
+                }
+              }
             }
           }
           spaceOwner {

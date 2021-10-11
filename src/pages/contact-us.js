@@ -10,7 +10,7 @@ export default function Contact(props) {
     <Layout>
       <Hero
         heading={data.banner.heading}
-        imageUrl={data.banner.image}
+        imageUrl={data.banner.imageFile}
       />
 
       <div className="container xl:max-w-screen-xl px-4 xl:px-0 pt-16 xl:pt-24 pb-16 md:pb-20 lg:pb-16 md:flex mx-auto text-sm">
@@ -23,7 +23,7 @@ export default function Contact(props) {
                   <img
                     className="lazy absolute h-5 w-5 -top-1 -right-1"
                     alt=""
-                    src="https://www.viztown.in/assets/images/phone-call.png"
+                    src="https://admin.viztown.in/assets/images/phone-call.png"
                   />
                 </div>
                 <a href="#" className="ml-4 font-semibold">
@@ -39,7 +39,7 @@ export default function Contact(props) {
                 <img
                   className="lazy absolute h-5 w-5 -top-1 -right-1"
                   alt=""
-                  src="https://www.viztown.in/assets/images/email.png"
+                  src="https://admin.viztown.in/assets/images/email.png"
                 />
               </div>
               <a
@@ -78,7 +78,13 @@ export const query = graphql`
       nodes {
         banner {
           heading
-          image
+          imageFile {
+            childImageSharp {
+              fluid(quality: 90, maxWidth: 1920) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
         }
         contactDetails {
           address

@@ -45,7 +45,7 @@ export default function index(props) {
                     <img
                       className="lazy absolute h-5 w-5 -top-1 -right-1"
                       alt=""
-                      src="https://www.viztown.in/assets/images/phone-call.png"
+                      src="https://admin.viztown.in/assets/images/phone-call.png"
                     />
                   </div>
                   <a href="#" className="ml-4 font-semibold">
@@ -60,7 +60,7 @@ export default function index(props) {
                   <img
                     className="lazy absolute h-5 w-5 -top-1 -right-1"
                     alt=""
-                    src="https://www.viztown.in/assets/images/email.png"
+                    src="https://admin.viztown.in/assets/images/email.png"
                   />
                 </div>
                 <a
@@ -101,7 +101,14 @@ export const query = graphql`
         data {
           banner {
             bannerImages {
-              image
+              imageFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    transformOptions: { fit: COVER, cropFocus: CENTER }
+                    layout: FULL_WIDTH
+                  )
+                }
+              }
             }
             buttons {
               text
@@ -114,7 +121,11 @@ export const query = graphql`
             heading
             description
             type
-            url
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(transformOptions: {fit: COVER, cropFocus: CENTER})
+              }
+            }
           }
           fourthSection {
             description
@@ -123,7 +134,15 @@ export const query = graphql`
             url
           }
           galleryImages {
-            image
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: {fit: COVER, cropFocus: CENTER}
+                  width: 400
+                  height: 400
+                  )
+              }
+            }
           }
           secoundSection {
             description
@@ -135,7 +154,11 @@ export const query = graphql`
             description
             heading
             type
-            url
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(transformOptions: {fit: COVER, cropFocus: CENTER})
+              }
+            }
           }
           whyPartners {
             allListing {

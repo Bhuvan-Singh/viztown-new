@@ -1,5 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -55,7 +56,6 @@ export default function ClientSlider() {
     query clientDataQuery {
       allTestimonialData {
         nodes {
-          image
           logo
           name
           review
@@ -66,11 +66,22 @@ export default function ClientSlider() {
       allClientData {
         nodes {
           heading
-          image
           clientsList {
             category
-            img
             title
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                )
+              }
+            }
+            img
+          }
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(transformOptions: {fit: COVER, cropFocus: CENTER})
+            }
           }
         }
       }
@@ -134,9 +145,9 @@ export default function ClientSlider() {
         <>
           <div className="xl:max-w-screen-xl md:flex mx-auto items-center">
             <div className="md:w-1/2">
-              <img
-                className="lazy md:w-10/12 mx-auto ml-0"
-                src={clientData.image}
+              <GatsbyImage
+                className="md:w-10/12 mx-auto ml-0"
+                image={getImage(clientData.imageFile)}
                 alt=""
               />
             </div>
@@ -150,8 +161,13 @@ export default function ClientSlider() {
               >
                 {clientData.clientsList.map((client, i) => (
                   <div className="item" key={i}>
+                    {/* <GatsbyImage
+                      className="w-full h-16 object-contain object-center"
+                      image={getImage(client.imageFile)}
+                      alt={client.title}
+                    /> */}
                     <img
-                      className="lazy h-16 w-full object-contain object-center"
+                      className="w-full h-16 object-contain object-center"
                       src={client.img}
                       alt={client.title}
                     />

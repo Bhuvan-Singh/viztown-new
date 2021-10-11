@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -48,14 +49,6 @@ function CustomPrevArrow(props) {
 }
 export default function ProfessionalSlider({ data }) {
   
-  // const [width, setWidth] = useState(window.innerWidth);
-  // useEffect(() => {
-  //   const handleResizeWindow = () => setWidth(window.innerWidth);
-  //   window.addEventListener("resize", handleResizeWindow);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResizeWindow);
-  //   };
-  // }, []);
   const breakpoint = 768;
   const settings = {
     slidesToShow: 3,
@@ -103,10 +96,11 @@ export default function ProfessionalSlider({ data }) {
             >
               {data.images.map((image, i) => (
                 <div className="item " key={i}>
-                  <img
+                  {/* <img
                     className="lazy w-full h-550 md:h-550 object-cover"
                     src={image.images}
-                  />
+                  /> */}
+                  <GatsbyImage className="w-full h-550 md:h-550 object-cover" image={getImage(image.imageFile)}/>
                 </div>
               ))}
             </Slider>
@@ -118,10 +112,11 @@ export default function ProfessionalSlider({ data }) {
             >
               {data.images.map((image, i) => (
                 <div className="item " key={i}>
-                  <img
+                  {/* <img
                     className="lazy w-full h-550 md:h-550 object-cover"
                     src={image.images}
-                  />
+                  /> */}
+                  <GatsbyImage className="w-full h-550 md:h-550 object-cover" image={getImage(image.imageFile)}/>
                 </div>
               ))}
             </Slider>

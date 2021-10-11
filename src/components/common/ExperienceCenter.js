@@ -1,4 +1,5 @@
 import React from "react";
+import {GatsbyImage, getImage, StaticImage} from "gatsby-plugin-image"
 import TwentyTwenty from "react-twentytwenty";
 
 export default function ExperienceCenter({ data }) {
@@ -31,12 +32,12 @@ export default function ExperienceCenter({ data }) {
               </div>
             </div>
             <div className="lg:w-1/2 relative">
-              <img
+              <GatsbyImage
                 className="lazy h-92 w-full object-cover"
                 alt=""
-                src={data.first.url}
+                image={getImage(data.first.imageFile)}
               />
-              <img
+              <StaticImage
                 className="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden lg:block"
                 alt=""
                 src="https://www.viztown.in/assets/images/right-camera.png"
@@ -58,8 +59,8 @@ export default function ExperienceCenter({ data }) {
             <div className="lg:w-1/2 z-20">
               <div className="twentytwenty-wrapper twentytwenty-horizontal">
                 <TwentyTwenty
-                  left={<img src={data.second.originalImage} />}
-                  right={<img src={data.second.modifiedImage} />}
+                  left={<GatsbyImage image={getImage(data.second.originalImageFile)} />}
+                  right={<GatsbyImage image={getImage(data.second.modifiedImageFile)} />}
                   slider={
                     <div className="twentytwenty-handle">
                       <span className="twentytwenty-left-arrow"></span>
@@ -120,7 +121,7 @@ export default function ExperienceCenter({ data }) {
                   <source src={data.third.url} type="video/mp4" />
                 </video>
               </div>
-              <img
+              <StaticImage
                 className="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden xl:block"
                 alt=""
                 src="https://www.viztown.in/assets/images/right-camera.png"
@@ -139,10 +140,10 @@ export default function ExperienceCenter({ data }) {
         <div className="xl:max-w-screen-xl items-center mx-auto lg:pt-0 z-10 relative">
           <div className="lg:flex items-center">
             <div className="lg:w-1/2 relative">
-              <img
+              <GatsbyImage
                 className="lazy h-92 w-full object-cover"
                 alt=""
-                src={data.fourth.url}
+                image={getImage(data.fourth.imageFile)}
               />
             </div>
 

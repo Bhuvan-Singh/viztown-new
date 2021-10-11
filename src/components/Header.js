@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image"
 import { CommonContext } from "../contexts/CommonContextProvider";
 import { AuthContext } from "../contexts/AuthContextProvider";
 import { auth } from "../services/firebase";
@@ -55,11 +56,11 @@ export default function Header({ isFixed = true }) {
         <div className="items-center justify-between py-2 hidden lg:flex">
           <Link to="/">
             <div className="vt-logo">
-              <img
-                src={`${process.env.GATSBY_BASE_URL}assets/images/logo.png`}
+              <StaticImage
+                src="https://admin.viztown.in/assets/images/logo.png"
                 className="w-36"
                 alt="Viztown Logo"
-              ></img>
+              />
             </div>
           </Link>
           <nav className="vt-navigation text-sm space-x-8 flex items-center font-medium">
@@ -104,8 +105,8 @@ export default function Header({ isFixed = true }) {
         <div className="w-full top-0 inset-x-0 transition transform origin-top-right lg:hidden py-3">
           <div className="flex items-center justify-between w-full lg:w-auto  px-4">
             <Link to="/">
-              <img
-                src={`${process.env.GATSBY_BASE_URL}assets/images/logo.png`}
+              <StaticImage
+                src="https://admin.viztown.in/assets/images/logo.png"
                 className="w-28"
                 alt="Wiztown Logo"
               />
@@ -147,8 +148,8 @@ export default function Header({ isFixed = true }) {
         <div className="px-4 pt-4 flex items-center justify-between">
           <div>
             <Link to="/">
-              <img
-                src={`${process.env.GATSBY_BASE_URL}assets/images/logo.png`}
+              <StaticImage
+                src="https://admin.viztown.in/assets/images/logo.png"
                 className="w-28"
                 alt="Wizwalk Logo"
               />

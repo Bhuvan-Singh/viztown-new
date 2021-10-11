@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { Link } from "gatsby";
+import {GatsbyImage, getImage, Img} from 'gatsby-plugin-image'
 import useIntersection from "../useIntersection";
 
 export default function AnimatedSection({ data }) {
+  console.log(data)
   const ref__module__1 = useRef();
   const ref__module__2 = useRef();
   const ref__module__3 = useRef();
@@ -37,18 +39,21 @@ export default function AnimatedSection({ data }) {
           <div className="sticky--module--sticky">
             <div className="sticky--module--window">
               <div className="sticky--module--figure figure--1">
-                <img className="lazy" alt={data[0].heading} src={data[0].url} />
+                <img className="lazy" alt={data[0].heading} src={data[0].imageFile.childImageSharp.fluid.srcWebp} />
+                {/* <GatsbyImage image={getImage(data[0].imageFile)} alt={data[0].heading} /> */}
               </div>
             </div>
           </div>
         </figure>
         <figure className="z-40 pb-8 lg:hidden">
-          <img
+          {/* <img
             className="lazy h-96 w-full"
             alt="Unlimited professional photos"
             src={data[0].url}
             // src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-          />
+          /> */}
+          <img className="h-96 w-full" alt={data[0].heading} src={data[0].imageFile.childImageSharp.fluid.srcWebp} />
+          {/* <GatsbyImage className="lazy h-96 w-full" alt={data[0].heading} image={getImage(data[0].imageFile)} /> */}
         </figure>
         <article className="lg:pr-32 space-y-8">
           <h1 className="text-4xl text-primary font-bold font-playfair mb-16 hidden lg:block">
@@ -82,6 +87,7 @@ export default function AnimatedSection({ data }) {
           </div>
         </article>
       </div>
+
       <div
         className="sticky--module--component sticky--module--component--2 lg:flex justify-end items-center w-full lg:mb-80 mt-0 static pt-16 pb-8 lg:pt-0 lg:pb-0 px-4 lg:px-0"
         ref={ref__module__2}
@@ -90,18 +96,20 @@ export default function AnimatedSection({ data }) {
           <div className="sticky--module--sticky">
             <div className="sticky--module--window">
               <div className="sticky--module--figure figure--2">
-                <img className="lazy" alt={data[1].heading} src={data[1].url} />
+                {/* <img className="lazy" alt={data[1].heading} src={data[1].url} /> */}
+                <img className="" alt={data[1].heading} src={data[1].imageFile.childImageSharp.fluid.srcWebp} />
               </div>
             </div>
           </div>
         </figure>
         <figure className="z-30 pb-8 lg:hidden">
-          <img
+          {/* <img
             className="lazy h-96 w-full"
             alt={data[1].heading}
             src={data[1].url}
             // src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-          />
+          /> */}
+          <img className="h-96 w-full" alt={data[1].heading} src={data[1].imageFile.childImageSharp.fluid.srcWebp} />
         </figure>
         <article className="lg:pr-32 space-y-8">
           <h2 className="text-3xl text-primary font-bold font-playfair block lg:pr-32">
@@ -140,18 +148,20 @@ export default function AnimatedSection({ data }) {
           <div className="sticky--module--sticky">
             <div className="sticky--module--window">
               <div className="sticky--module--figure figure--3">
-                <img className="lazy" alt={data[2].heading} src={data[2].url} />
+                {/* <img className="lazy" alt={data[2].heading} src={data[2].url} /> */}
+                <img className="" alt={data[2].heading} src={data[2].imageFile.childImageSharp.fluid.srcWebp} />
               </div>
             </div>
           </div>
         </figure>
         <figure className="z-20 pb-8 lg:hidden">
-          <img
+          {/* <img
             className="lazy h-96 w-full"
             alt={data[2].heading}
             src={data[2].url}
             // src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-          />
+          /> */}
+          <img className="h-96 w-full" alt={data[2].heading} src={data[2].imageFile.childImageSharp.fluid.srcWebp} />
         </figure>
         <article className="lg:pr-32 space-y-8">
           <h2 className="text-3xl text-primary font-bold font-playfair block lg:pr-32">

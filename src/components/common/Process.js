@@ -1,4 +1,5 @@
 import React from "react";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 
 export default function Process({ data }) {
   return (
@@ -9,10 +10,10 @@ export default function Process({ data }) {
       <div className="xl:max-w-screen-xl items-center mx-auto px-4 xl:px-0 pt-16 xl:pt-24 relative z-10">
         <div className="flex flex-col-reverse lg:flex lg:flex-row items-center ">
           <div className="lg:w-3/12 lg:pr-8">
-            <img
+            <GatsbyImage
               className="lazy md:object-center lg:object-left w-full xl:-mb-28 md:h-96 object-contain lg:h-auto"
               alt=""
-              src={data.image}
+              image={getImage(data.imageFile)}
             />
           </div>
           <div className="lg:w-9/12 lg:pl-24 pb-16 lg:pb-0 xl:pt-16 relative">

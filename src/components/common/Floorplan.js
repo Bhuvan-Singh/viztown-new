@@ -1,4 +1,5 @@
 import React from "react";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import TwentyTwenty from "react-twentytwenty";
 
 export default function Floorplan({data}) {
@@ -17,10 +18,10 @@ export default function Floorplan({data}) {
         <div className="lg:w-1/2 z-20 lg:space-x-8 mt-8 lg:mt-0">
           <TwentyTwenty
             left={
-              <img src={data.originalImage} />
+              <GatsbyImage image={getImage(data.originalImageFile)} />
             }
             right={
-              <img src={data.modifiedImage} />
+              <GatsbyImage image={getImage(data.modifiedImageFile)} />
             }
             slider={<div className="twentytwenty-handle" ><span className="twentytwenty-left-arrow"></span><span className="twentytwenty-right-arrow"></span></div>}
           />

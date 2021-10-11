@@ -47,7 +47,7 @@ export default function Partners(props) {
   //Testimonial slider setting
   return (
     <Layout>
-      <Hero heading={partnerData.banner.heading} imageUrl={partnerData.banner.image}/>
+      <Hero heading={partnerData.banner.heading} imageUrl={partnerData.banner.imageFile}/>
       <div className="bg-grey pt-24">
         <div className="container xl:max-w-screen-xl mx-auto mb-8">
           <div className="text-center">
@@ -99,7 +99,13 @@ export const query = graphql`
         data {
           banner {
             heading
-            image
+            imageFile {
+              childImageSharp {
+                fluid(quality: 90, maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
       }

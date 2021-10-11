@@ -1,10 +1,12 @@
 import React from "react";
-import {Link} from 'gatsby'
+import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function HomeBanner({ data }) {
+  console.log(data)
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -26,10 +28,15 @@ export default function HomeBanner({ data }) {
             <Slider className="home--slider h-full" {...settings}>
               {data.bannerImages.map((image, i) => (
                 <div className="slide" key={i}>
-                  <img
+                  {/* <img
                     className="lazy h-90vh w-full object-cover"
                     src={image.image}
                     alt=""
+                  /> */}
+                  <GatsbyImage
+                    image={getImage(image.imageFile)}
+                    alt={image.name}
+                    className="h-90vh"
                   />
                 </div>
               ))}
@@ -38,9 +45,11 @@ export default function HomeBanner({ data }) {
 
           <div className="container xl:max-w-screen-xl lg:text-center mx-auto relative z-10 h-90vh">
             <div className="relative transform translate-y-1/3 md:translate-y-1/2 top-24 md:top-1/4 space-y-8 px-4 lg:px-0">
-              <h1 className="text-4xl 2xl:text-5xl text-white font-bold font-playfair">{data.heading}</h1>
+              <h1 className="text-4xl 2xl:text-5xl text-white font-bold font-playfair">
+                {data.heading}
+              </h1>
               <p className="text-white text-lg max-w-2xl lg:mx-auto">
-                  {data.subheading}
+                {data.subheading}
               </p>
               <div className="flex items-center lg:justify-center space-x-4 w-full">
                 <Link

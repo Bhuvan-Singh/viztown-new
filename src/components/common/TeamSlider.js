@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -100,9 +101,9 @@ export default function TeamSlider({ team }) {
         >
           {team.map((member) => (
             <div className="relative">
-              <img
-                className="lazy w-full h-80 object-top object-contain"
-                src={member.img}
+              <GatsbyImage
+                className="lg:w-11/12 mx-auto object-center object-contain"
+                image={getImage(member.imageFile)}
                 alt={member.name}
               />
               <div className="bg-secondary w-9/12 mx-auto text-center py-4 -mt-11 z-10 relative">

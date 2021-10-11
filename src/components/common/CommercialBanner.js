@@ -1,15 +1,22 @@
 import React from "react";
+import BackgroundImage from "gatsby-background-image";
 
 export default function CommercialBanner({ data }) {
   return (
-    <div
+    // <div
+    //   className="module--header relative flex justify-end overflow-hidden items-center min-h-screen"
+    //   style={{
+    //     backgroundImage: `url(${data.image})`,
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundSize: "cover",
+    //     backgroundPosition: "bottom",
+    //   }}
+    // >
+    <BackgroundImage
+      Tag="section"
       className="module--header relative flex justify-end overflow-hidden items-center min-h-screen"
-      style={{
-        backgroundImage: `url(${data.image})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-      }}
+      fluid={data.imageFile.childImageSharp.fluid}
+      backgroundColor={`#040e18`}
     >
       <div className="w-150p transform -rotate-3 absolute h-80 bg-grey bottom-0 -mb-52 left-0 -ml-28 z-10 "></div>
       <div className="absolute w-full h-full bg-black opacity-70 top-0 left-0 z-0"></div>
@@ -23,6 +30,6 @@ export default function CommercialBanner({ data }) {
           </p>
         </div>
       </div>
-    </div>
+    </BackgroundImage>
   );
 }

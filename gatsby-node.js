@@ -1,11 +1,10 @@
 const path = require("path");
 const axios = require("axios");
-// const crypto = require("crypto");
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 const instance = axios.create({
   baseURL: process.env.API_URL,
 });
-// Where you would set stuff like your 'Authorization' header, etc ...
 instance.defaults.headers.common["Authorization"] =
   process.env.AUTHORIZATION_KEY;
 instance.defaults.headers.common["Content-Type"] = "application/json";
@@ -86,12 +85,13 @@ exports.sourceNodes = async ({
       })
       .catch((error) => error);
   const testimonialData = await fetchTestimonialData();
+
   testimonialData.map((testimonial, i) => {
     const testimonialNode = {
       id: createNodeId(`testimonial-data-${i}`),
       parent: `__SOURCE__`,
       internal: {
-        type: `TestimonialData`,
+        type: "TestimonialData",
       },
       children: [],
       logo: testimonial.logo,
@@ -103,7 +103,7 @@ exports.sourceNodes = async ({
 
     testimonialNode.internal.contentDigest =
       createContentDigest(testimonialNode);
-    createNode(testimonialNode);
+      createNode(testimonialNode);
   });
 
   // Create About Data node
@@ -191,7 +191,8 @@ exports.sourceNodes = async ({
     children: [],
     data: siteSettingsData,
   };
-  siteSettingsNode.internal.contentDigest = createContentDigest(siteSettingsNode);
+  siteSettingsNode.internal.contentDigest =
+    createContentDigest(siteSettingsNode);
   createNode(siteSettingsNode);
 
   // Create Partner Data node
@@ -216,7 +217,6 @@ exports.sourceNodes = async ({
   partnerNode.internal.contentDigest = createContentDigest(partnerNode);
   createNode(partnerNode);
 
-
   return;
 };
 
@@ -234,3 +234,419 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     });
   }
 };
+
+exports.createSchemaCustomization = ({
+  actions: { createTypes, printTypeDefinitions },
+}) => {
+  printTypeDefinitions({
+    path: "./types.txt"
+  })
+  createTypes(`
+    type TestimonialData implements Node {
+      localimage: TestimonialDataLocalimage
+    }
+    type TestimonialDataLocalimage @dontInfer {
+      url: File @link(by: "url")
+    }
+  `);
+};
+
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  createNodeId,
+  cache,
+  store,
+}) => {
+  if (node.internal.type === "TestimonialData") {
+    node.localimage = await createRemoteFileNode({
+      url: node.image,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      cache,
+      store,
+    });
+  }
+};
+
+exports.createResolvers = ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions
+  createResolvers({
+    HomeDataDataBannerBannerImages: {
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    HomeDataDataFirstSection:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    HomeDataDataThirdSection:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    HomeDataDataGalleryImages:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    ClientData:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    ClientDataClientsList:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.img}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    AboutDataDataBanner:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    AboutDataDataAboutDetails:{
+      imageFile1: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image1}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+      imageFile2: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image2}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+      imageFile3: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image3}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    AboutDataDataOurTeamTeamlist:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.img}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    PartnerDataDataBanner:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    ContactDataBanner:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataBanner:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataFirstSection:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataSecoundSection:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataThirdSection:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataProfessionalPhotosImages:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.images}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataFloorPlan:{
+      originalImageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.originalImage}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+      modifiedImageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.modifiedImage}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataFirstSectionexperienceCenter:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataSecondSectionexperienceCenter:{
+      originalImageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.originalImage}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+      modifiedImageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.modifiedImage}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataFourthSectionexperienceCenter:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.url}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    CommercialDataDataOurProcess:{
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: `${source.image}`,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    
+  })
+}

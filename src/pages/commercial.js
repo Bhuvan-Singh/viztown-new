@@ -41,36 +41,83 @@ export const query = graphql`
         data {
           banner {
             heading
-            image
+            imageFile {
+              childImageSharp {
+                fluid(quality: 90, maxWidth: 1920, cropFocus: SOUTH) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
             subheading
           }
           firstSection {
             description
             fileType
             heading
-            url
+            imageFile {
+              childImageSharp {
+                fluid {
+                  srcWebp
+                }
+              }
+            }
           }
           firstSectionexperienceCenter {
             description
             fileType
             heading
-            url
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
           }
           floorPlan {
             description
             heading
-            modifiedImage
-            originalImage
+            modifiedImageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
+            originalImageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
           }
           fourthSectionexperienceCenter {
             description
             fileType
             heading
-            url
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
           }
           ourProcess {
             heading
-            image
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
             processList {
               process
             }
@@ -80,20 +127,47 @@ export const query = graphql`
             description
             heading
             images {
-              images
+              imageFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    transformOptions: { fit: COVER, cropFocus: CENTER }
+                    layout: FULL_WIDTH
+                  )
+                }
+              }
             }
           }
           secondSectionexperienceCenter {
             description
             heading
-            originalImage
-            modifiedImage
+            modifiedImageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
+            originalImageFile {
+              childImageSharp {
+                gatsbyImageData(
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                  layout: FULL_WIDTH
+                )
+              }
+            }
           }
           secoundSection {
             description
             fileType
             heading
-            url
+            imageFile {
+              childImageSharp {
+                fluid {
+                  srcWebp
+                }
+              }
+            }
           }
           thirdSectionexperienceCenter {
             description
@@ -105,7 +179,13 @@ export const query = graphql`
             description
             fileType
             heading
-            url
+            imageFile {
+              childImageSharp {
+                fluid {
+                  srcWebp
+                }
+              }
+            }
           }
           virtualTour {
             description
