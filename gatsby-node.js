@@ -238,9 +238,6 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 exports.createSchemaCustomization = ({
   actions: { createTypes, printTypeDefinitions },
 }) => {
-  printTypeDefinitions({
-    path: "./types.txt"
-  })
   createTypes(`
     type TestimonialData implements Node {
       localimage: TestimonialDataLocalimage

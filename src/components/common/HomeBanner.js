@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function HomeBanner({ data }) {
-  console.log(data)
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,

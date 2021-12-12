@@ -8,10 +8,12 @@ import Floorplan from "../components/common/Floorplan";
 import VirtualTour from "../components/common/VirtualTour";
 import ExperienceCenter from "../components/common/ExperienceCenter";
 import Process from "../components/common/Process";
+import SEO from '../components/SEO'
 export default function Commercial(props) {
   const data = props.data.allCommercialData.nodes[0].data;
   return (
     <Layout>
+      <SEO title="Viztown - Commercial"/>
       <CommercialBanner data={data.banner} />
       <AnimatedSection
         data={[data.firstSection, data.secoundSection, data.thirdSection]}

@@ -16,7 +16,6 @@ const FilterHandler = () => {
         })
         
         const budget = filterState.budget[1] === 0 ? null : filterState.budget
-        console.log(filterState.budget)
         axiosConfig.get('/filteredListings',{
             params: {
                 category: filterState.category,

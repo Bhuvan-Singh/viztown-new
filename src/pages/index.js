@@ -7,12 +7,14 @@ import WhyPartner from "../components/common/WhyPartner";
 import Features from "../components/common/Features";
 import InstaSlider from "../components/common/InstaSlider";
 import ContactForm from "../components/common/ContactForm";
+import SEO from '../components/SEO'
 
 export default function index(props) {
   const data = props.data.allHomeData.nodes[0].data;
   const contactData = props.data.allContactData.nodes[0];
   return (
     <Fragment>
+      <SEO />
       <div></div>
       <Layout>
         <HomeBanner data={data.banner} />

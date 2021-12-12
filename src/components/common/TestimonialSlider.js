@@ -75,7 +75,6 @@ export default function TestimonialSlider() {
     }
   `);
   const testimonials = queryData.allTestimonialData.nodes;
-  console.log(testimonials);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
 

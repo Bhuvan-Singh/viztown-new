@@ -37,10 +37,11 @@ export default function ExperienceCenter({ data }) {
                 alt=""
                 image={getImage(data.first.imageFile)}
               />
-              <StaticImage
+              <img
                 className="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden lg:block"
                 alt=""
-                src="https://www.viztown.in/assets/images/right-camera.png"
+                src="https://admin.viztown.in/assets/images/right-camera.png"
+                style={{position: "absolute"}}
               />
             </div>
           </div>
@@ -121,10 +122,11 @@ export default function ExperienceCenter({ data }) {
                   <source src={data.third.url} type="video/mp4" />
                 </video>
               </div>
-              <StaticImage
+              <img
                 className="lazy absolute w-48 bottom-0 -mb-12 right-0 -mr-32 z-30 hidden xl:block"
                 alt=""
-                src="https://www.viztown.in/assets/images/right-camera.png"
+                src="https://admin.viztown.in/assets/images/right-camera.png"
+                style={{position: "absolute"}}
               />
             </div>
           </div>
@@ -144,6 +146,7 @@ export default function ExperienceCenter({ data }) {
                 className="lazy h-92 w-full object-cover"
                 alt=""
                 image={getImage(data.fourth.imageFile)}
+                
               />
             </div>
 

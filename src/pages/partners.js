@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TestimonialSlider from "../components/common/TestimonialSlider";
+import SEO from '../components/SEO'
 export default function Partners(props) {
   const data = props.data.allClientData.nodes[0];
   const partnerData = props.data.allPartnerData.nodes[0].data;
@@ -47,6 +48,7 @@ export default function Partners(props) {
   //Testimonial slider setting
   return (
     <Layout>
+      <SEO title="Viztown - Our Partners"/>
       <Hero heading={partnerData.banner.heading} imageUrl={partnerData.banner.imageFile}/>
       <div className="bg-grey pt-24">
         <div className="container xl:max-w-screen-xl mx-auto mb-8">

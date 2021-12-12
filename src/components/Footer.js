@@ -23,7 +23,6 @@ export default function Footer(props) {
     }
   `);
   const data = queryData.allContactData.nodes[0];
-  console.log("sfddfsf")
   return (
     <footer className="w-full bg-primary pb-16 mt-4 lg:mt-24 relative z-10 text-sm font-light">
       <div className="container xl:max-w-screen-lg mx-auto md:pt-20">
