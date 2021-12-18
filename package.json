@@ -63,6 +63,7 @@
     "react-transition-group": "^4.4.2",
     "react-twentytwenty": "^1.2.1",
     "react-zoom-pan-pinch": "^2.1.3",
+    "reveal.js": "^4.2.1",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^2.2.7",
     "yup": "^0.32.9"

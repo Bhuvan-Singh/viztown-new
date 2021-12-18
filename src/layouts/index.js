@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-// import LayoutNoFooter from "../components/LayoutNoFooter";
-// import Listings from "../components/showcase/listings/Listings";
-// import OwnerDetails from "../components/showcase/OwnerDetails";
+import LayoutNoFooter from "../components/LayoutNoFooter";
+import Listings from "../components/showcase/listings/Listings";
+import OwnerDetails from "../components/showcase/OwnerDetails";
 import { CommonContext } from "../contexts/CommonContextProvider";
 import axiosConfig from "../axiosConfig";
 
@@ -50,7 +50,7 @@ const Layout = ({ pageContext, children }) => {
     if (!pageContext.matchPath) return <>{children}</>;
     return getParamFromPathname(pageContext.matchPath) === "showcase" ? (
         <div>
-            {/* <LayoutNoFooter>
+            <LayoutNoFooter>
                 <div className="vt-showcase mx-auto relative z-10">
                     <div className="grid lg:grid-cols-9 xl:grid-cols-8 2xl:grid-cols-12">
                         <div
@@ -105,7 +105,7 @@ const Layout = ({ pageContext, children }) => {
                         </div>
                     </div>
                 </div>
-            </LayoutNoFooter> */}
+            </LayoutNoFooter>
         </div>
     ) : (
         <>{children}</>
