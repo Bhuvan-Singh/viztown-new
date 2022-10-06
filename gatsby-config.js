@@ -51,12 +51,12 @@ module.exports = {
         },
         // VIZTOWN STAGING CONFIG
         // {
-        //   resolve: `gatsby-plugin-s3`,
-        //   options: {
-        //     bucketName: "viztown.in",
-        //     protocol: "https",
-        //     hostname: "d26v9rwrlzb8dk.cloudfront.net",
-        //   },
+        //     resolve: `gatsby-plugin-s3`,
+        //     options: {
+        //         bucketName: "viztown.in",
+        //         protocol: "https",
+        //         hostname: "d26v9rwrlzb8dk.cloudfront.net",
+        //     },
         // },
         // VIZTOWN LIVE CONFIG
         {

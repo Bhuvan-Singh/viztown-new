@@ -53,7 +53,7 @@ export default function KYC(props) {
                     {initialValues === null ? (
                         <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                             <img
-                                src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                 alt="loading"
                             />
                         </div>
@@ -72,7 +72,7 @@ export default function KYC(props) {
                                     for (const key in params) {
                                         formData.append(key, params[key]);
                                     }
-                                    console.log(formData);
+                                    // console.log(formData);
                                     axiosConfig
                                         .post("/addKycDetails", formData, {
                                             config: {
@@ -83,7 +83,7 @@ export default function KYC(props) {
                                             },
                                         })
                                         .then(function (response) {
-                                            console.log(response);
+                                            // console.log(response);
                                             setSubmitting(false);
                                             navigate(
                                                 `/dashboard/agreements/create/rent/${props.id}/download`
@@ -285,7 +285,7 @@ export default function KYC(props) {
                                             {isSubmitting ? (
                                                 <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                                                     <img
-                                                        src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                                        src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                                         alt="loading"
                                                     />
                                                 </div>

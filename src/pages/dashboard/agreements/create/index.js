@@ -32,7 +32,7 @@ export default function NewAgreement(props) {
                                 status: "1",
                                 ...values,
                             };
-                            console.log(params);
+                            // console.log(params);
                             axiosConfig
                                 .post("/addAgreementType", params)
                                 .then(function (response) {
@@ -159,7 +159,7 @@ export default function NewAgreement(props) {
                                     {isSubmitting ? (
                                         <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                                             <img
-                                                src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                                src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                                 alt="loading"
                                             />
                                         </div>

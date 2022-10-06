@@ -10,10 +10,10 @@ export default function Contact(props) {
     return (
         <Layout>
             <SEO title="Viztown - Our Partners" />
-            {/* <Hero
+            <Hero
                 heading={data.banner.heading}
                 imageUrl={data.banner.imageFile}
-            /> */}
+            />
 
             <div className="container xl:max-w-screen-xl px-4 xl:px-0 pt-16 xl:pt-24 pb-16 md:pb-20 lg:pb-16 md:flex mx-auto text-sm">
                 <div className="md:w-5/12 lg:w-2/5 lg:pr-10 ">

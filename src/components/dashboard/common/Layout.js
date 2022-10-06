@@ -8,60 +8,62 @@ import CreateListingNavigation from "../common/CreateListingNavigation";
 import AuthorizedRoute from "./AuthorizedRoute";
 import { AuthContext } from "../../../contexts/AuthContextProvider";
 export default function Layout({
-    children,
-    createListingPage = false,
-    propertyId,
-    fullView = false,
+	children,
+	createListingPage = false,
+	propertyId,
+	fullView = false,
 }) {
-    // console.log("Layout loaded");
-    const { user } = useContext(AuthContext);
-    const [loading, setLoading] = useState(true);
-    // const [user, loading, error] = useAuthState(auth);
-    useEffect(() => {
-        user === null
-            ? setLoading(false)
-            : setTimeout(() => {
-                  setLoading(false);
-              });
-    }, []);
-    if (loading)
-        return (
-            <div className="flex justify-center items-center w-full h-full bg-grey">
-                {/* <span className="font-semibold"><img src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif" alt="loading" /></span> */}
-            </div>
-        );
-    if (user === null) navigate("/login");
+	// console.log("Layout loaded");
+	const { user } = useContext(AuthContext);
+	const [loading, setLoading] = useState(true);
+	// const [user, loading, error] = useAuthState(auth);
+	useEffect(() => {
+		user === null
+			? setLoading(false)
+			: setTimeout(() => {
+					setLoading(false);
+			  });
+	}, []);
+	if (loading)
+		return (
+			<div className="flex justify-center items-center w-full h-full bg-grey">
+				{/* <span className="font-semibold"><img src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`} alt="loading" /></span> */}
+			</div>
+		);
+	if (user === null) navigate("/login");
 
-    return !user ? (
-        <div className="flex justify-center items-center w-full h-full bg-grey">
-            <span className="font-semibold">
-                <img
-                    src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
-                    alt="loading"
-                />
-            </span>
-        </div>
-    ) : (
-        <div>
-            <Header />
+	return !user ? (
+		<div className="flex justify-center items-center w-full h-full bg-grey">
+			<span className="font-semibold">
+				<img
+					src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
+					alt="loading"
+				/>
+			</span>
+		</div>
+	) : (
+		<div className="dashboard">
+			<Header />
 
-            <div
-                className={`content ${
-                    !fullView ? "max-w-screen-xl mx-auto" : ""
-                } `}
-            >
-                {createListingPage ? (
-                    <>
-                        {" "}
-                        <AuthorizedRoute propertyId={propertyId}>
-                            <CreateListingNavigation propertyId={propertyId} />{" "}
-                            {children}
-                        </AuthorizedRoute>
-                    </>
-                ) : (
-                    children
-                )}
-            </div>
-        </div>
-    );
+			<div
+				className={`content ${
+					!fullView
+						? "lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-full	 2xl:px-20 mx-auto"
+						: ""
+				} `}
+			>
+				{createListingPage ? (
+					<>
+						{" "}
+						<AuthorizedRoute propertyId={propertyId}>
+							<CreateListingNavigation propertyId={propertyId} />{" "}
+							{children}
+						</AuthorizedRoute>
+					</>
+				) : (
+					children
+				)}
+			</div>
+		</div>
+	);
 }

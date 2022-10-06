@@ -76,7 +76,7 @@ export default function PropertyDetails(props) {
                     {initialValues === null ? (
                         <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                             <img
-                                src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                 alt="loading"
                             />
                         </div>
@@ -98,11 +98,11 @@ export default function PropertyDetails(props) {
                                         params.society_maintenance === "0"
                                             ? params.society_maintenance
                                             : "1";
-                                    console.log(params);
+                                    // console.log(params);
                                     axiosConfig
                                         .post("/addPropertyDetails", params)
                                         .then(function (response) {
-                                            console.log(response);
+                                            // console.log(response);
                                             setSubmitting(false);
                                             navigate(
                                                 `/dashboard/agreements/create/rent/${props.id}/kyc`
@@ -775,7 +775,7 @@ export default function PropertyDetails(props) {
                                             {isSubmitting ? (
                                                 <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                                                     <img
-                                                        src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                                        src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                                         alt="loading"
                                                     />
                                                 </div>

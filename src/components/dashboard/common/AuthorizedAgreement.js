@@ -7,7 +7,6 @@ export default function AuthorizedAgreement({ children, id }) {
     const { user } = useContext(AuthContext);
     const [isAuthorizedAgreement, setIsAuthorizedAgreement] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(id);
     useEffect(() => {
         axiosConfig
             .get("/authorizedAgreement", {
@@ -27,7 +26,7 @@ export default function AuthorizedAgreement({ children, id }) {
     return isLoading ? (
         <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center left-0">
             <img
-                src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                 alt="loading"
             />
         </div>

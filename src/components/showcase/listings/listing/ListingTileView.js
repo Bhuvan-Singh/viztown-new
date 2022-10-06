@@ -11,55 +11,35 @@ import Configuration from "./Configuration";
 import * as styles from "../../../../css/listing.module.css";
 
 export default function ListingTileView({ property }) {
-    console.log(property);
-    return (
-        <div className="vt-listing rounded-md border border-gray-200 bg-white relative flex items-center rounded-xl relative">
-            <div className="rounded-xl w-36 2xl:w-60 overflow-hidden">
-                <FeaturedImg
-                    featuredImage={property.propertyDetails.feature_image}
-                    height="40"
-                />
-            </div>
-            <div className="vt-listing-details px-6 2xl:px-10 flex-grow">
-                <Title title={property.propertyDetails.property_name} />
-                <Location location={property.propertyDetails.address} />
-                {/* <div className="py-3">
+	// console.log(property);
+	return (
+		<a
+			href={`/showcase/${property.propertyDetails.slug}`}
+			target="_blank"
+			className="vt-listing border border-gray-200 bg-white grid grid-cols-12 items-center rounded-xl relative"
+		>
+			<div className="rounded-xl col-span-4 overflow-hidden">
+				<FeaturedImg
+					featuredImage={property.propertyDetails.feature_image}
+					height="40"
+					fullHeight={false}
+				/>
+			</div>
+			<div className="vt-listing-details pl-6 pr-2 2xl:px-6 col-span-8">
+				<Title title={property.propertyDetails.property_name} />
+				<Location location={property.propertyDetails.address} />
+				{/* <div className="py-3">
                     <Configuration configuration={property.configuration} />
                 </div> */}
-                <h5 className="text-lg font-semibold text-blue-500 mt-3">
-                    {property.view}{" "}
-                    <span className="text-xs font-regular text-lightGrey">
-                        Views this week
-                    </span>
-                </h5>
-            </div>
+				<h5 className="text-lg font-semibold text-blue-500 mt-3 flex items-center gap-2">
+					<span>{property.view}</span>
+					<span className="text-xs font-light text-lightGrey">
+						Views this week
+					</span>
+				</h5>
+			</div>
 
-            <div className="absolute right-2 top-2 flex space-x-2">
-                <a
-                    href={`/showcase/${property.propertyDetails.slug}`}
-                    target="_blank"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-gray-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                        />
-                    </svg>
-                </a>
+			{/* <div className="absolute right-2 top-2 flex space-x-2">
                 <Link to={`/dashboard/listings/create/${property.id}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +56,7 @@ export default function ListingTileView({ property }) {
                         />
                     </svg>
                 </Link>
-            </div>
-        </div>
-    );
+            </div> */}
+		</a>
+	);
 }

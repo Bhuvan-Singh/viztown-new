@@ -75,7 +75,7 @@ export default function FilterContextProvider({ children }) {
     }, []);
 
     const updateData = () => {
-        console.log(filterState);
+        // console.log(filterState);
     };
 
     return (

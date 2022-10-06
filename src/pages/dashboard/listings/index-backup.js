@@ -48,7 +48,7 @@ export default function Listings() {
             {isLoading ? (
                 <div className="relative w-full z-5 h-full mt-32 flex justify-center items-center">
                     <img
-                        src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                        src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                         alt="loading"
                     />
                 </div>

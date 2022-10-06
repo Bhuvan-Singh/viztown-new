@@ -21,7 +21,7 @@ export default function KYC(props) {
                     style={{ height: "calc(100vh - 60px)", position: "fixed" }}
                 >
                     <div className="col-span-3">
-                        <Steps params={props.params} />
+                        <Steps params={props.params} type="sale" />
                     </div>
 
                     <div className="col-span-9 p-8">
@@ -30,7 +30,7 @@ export default function KYC(props) {
                         </Heading>
                         {user !== null ? (
                             <a
-                                href={`http://cyberworx.co.in/viztown-2.0/admin/api/generateAgreement?agreement_id=${props.id}&agreement_type=2&uid=${user.user.uid}`}
+                                href={`https://admin.viztown.in/api/generateAgreement?agreement_id=${props.id}&agreement_type=2&uid=${user.user.uid}`}
                                 download
                                 target="_blank"
                                 className="w-52 text-xs font-semibold text-primary rounded-full py-3 px-4 h-11 uppercase bg-dashboardBlue cursor-pointer flex items-center space-x-2 mt-4 inline"

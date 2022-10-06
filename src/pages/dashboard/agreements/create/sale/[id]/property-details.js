@@ -90,7 +90,7 @@ export default function PropertyDetails(props) {
                     {initialValues === null ? (
                         <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                             <img
-                                src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                 alt="loading"
                             />
                         </div>
@@ -150,7 +150,7 @@ export default function PropertyDetails(props) {
                                         Yup.number().typeError(
                                             "Enter valid data"
                                         ),
-                                    floor: Yup.number()
+                                    floor: Yup.string()
                                         .typeError("Enter valid data")
                                         .required("required field"),
                                     property_furnished: Yup.string()
@@ -436,12 +436,12 @@ export default function PropertyDetails(props) {
 
                                                 <div className="w-full flex flex-col gap-2">
                                                     <label className="text-sm font-semibold text-primary">
-                                                        Floor
+                                                        Floor(s)
                                                     </label>
                                                     <input
                                                         name="floor"
                                                         type="text"
-                                                        placeholder="Enter security amount in rupees"
+                                                        placeholder="Enter floor number"
                                                         value={values.floor}
                                                         onChange={handleChange}
                                                         onBlur={handleBlur}
@@ -1063,7 +1063,7 @@ export default function PropertyDetails(props) {
                                             {isSubmitting ? (
                                                 <div className="absolute w-full z-5 top-0 h-full flex justify-center items-center">
                                                     <img
-                                                        src="http://cyberworx.co.in/viztown-2.0/admin/assets/backend/image/loader.gif"
+                                                        src={`${process.env.GATSBY_BASE_URL}/assets/backend/image/loader.gif`}
                                                         alt="loading"
                                                     />
                                                 </div>

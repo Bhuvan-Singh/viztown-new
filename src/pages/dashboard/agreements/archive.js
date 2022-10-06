@@ -4,78 +4,6 @@ import AgreementToolbar from "../../../components/dashboard/agreements/Toolbar";
 import Agreement from "../../../components/dashboard/agreements/Agreement";
 import axiosConfig from "../../../axiosConfig";
 import RoleAuthorize from "../../../components/dashboard/RoleAuthorize";
-// const defaultAgreements = [
-//     {
-//         id: 1,
-//         date: "20 Jan 2021",
-//         type: 0,
-//         title: "Prius rent agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611100800,
-//     },
-//     {
-//         id: 2,
-//         date: "23 Jan 2021",
-//         type: 0,
-//         title: "Abc rent agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611360000,
-//     },
-//     {
-//         id: 3,
-//         date: "24 Jan 2021",
-//         type: 1,
-//         title: "Xyz agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611446400,
-//     },
-//     {
-//         id: 4,
-//         date: "27 Jan 2021",
-//         type: 0,
-//         title: "efg Agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611705600,
-//     },
-//     {
-//         id: 5,
-//         date: "27 Jan 2021",
-//         type: 0,
-//         title: "Prius ren agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611705600,
-//     },
-//     {
-//         id: 6,
-//         date: "28 Jan 2021",
-//         type: 1,
-//         title: "Edward sale agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611792000,
-//     },
-//     {
-//         id: 7,
-//         date: "29 Jan 2021",
-//         type: 1,
-//         title: "Prius ren agreement",
-//         buyer: "Guy Hawkins",
-//         seller: "Ralph Edwards",
-//         address: "C2-901, 9th Floor, Tulip Garden, Sector 69, Gurgaon, 122101",
-//         timestamp: 1611878400,
-//     },
-// ];
 
 export default function Agreements() {
 	const [defaultAgreements, setDefaultAgreements] = useState(null);
@@ -94,7 +22,7 @@ export default function Agreements() {
 			.get("/getAgreementListing", {
 				params: {
 					id: localStorage.getItem("vendor_id"),
-					archive: 0,
+					archive: 1,
 				},
 			})
 			.then(function (response) {
@@ -164,6 +92,7 @@ export default function Agreements() {
 				<AgreementToolbar
 					onSortChange={onSortChange}
 					handleSearch={handleSearch}
+					archive={true}
 				/>
 				{agreements === null ? (
 					""

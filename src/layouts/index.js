@@ -14,7 +14,7 @@ const Layout = ({ pageContext, children }) => {
     };
 
     useEffect(() => {
-        console.log(userIP);
+        // console.log(userIP);
         if (document.querySelector('[aria-current="page"]') !== null)
             document.querySelector('[aria-current="page"]').scrollIntoView();
         if (activeSlug !== null) {
